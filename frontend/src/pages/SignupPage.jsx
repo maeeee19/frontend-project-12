@@ -63,10 +63,10 @@ const SignupPage = () => {
           <Col>
             <Form onSubmit={formik.handleSubmit}>
               <Form.Group className="mb-3">
-                <Form.Label>Ваш ник</Form.Label>
+                <Form.Label>Имя пользователя</Form.Label>
                 <Form.Control
                   type="username"
-                  placeholder="Ваш ник"
+                  placeholder="Имя пользователя"
                   onChange={(e) => formik.setFieldValue('username', e.target.value)}
                   value={formik.values.username}
                   isInvalid={formik.touched.username && formik.errors.username}
