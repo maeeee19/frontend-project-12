@@ -1,23 +1,24 @@
-import { createApi } from '@reduxjs/toolkit/query/react';
-import axios from 'axios';
+import { createApi } from '@reduxjs/toolkit/query/react'
+import axios from 'axios'
 
 export const channelsApi = createApi({
   reducerPath: 'channelsApi',
   tagTypes: ['Channel'],
-  endpoints: (builder) => ({
+  endpoints: builder => ({
     getChannels: builder.query({
       queryFn: async () => {
         try {
-          const token = localStorage.getItem('token');
-          const response = await axios.get('/api/v1/channels', { headers: { Authorization: `Bearer ${token}` } });
-          return { data: response.data };
-        } catch (error) {
+          const token = localStorage.getItem('token')
+          const response = await axios.get('/api/v1/channels', { headers: { Authorization: `Bearer ${token}` } })
+          return { data: response.data }
+        }
+        catch (error) {
           return {
             error: {
               status: error.response?.status || 'FETCH_ERROR',
               data: error.response?.data || error.message,
             },
-          };
+          }
         }
       },
       providesTags: ['Channel'],
@@ -25,17 +26,18 @@ export const channelsApi = createApi({
     addChannel: builder.mutation({
       queryFn: async (newChannel) => {
         try {
-          const token = localStorage.getItem('token');
-          const response = await axios.post('/api/v1/channels', newChannel, { headers: { Authorization: `Bearer ${token}` } });
+          const token = localStorage.getItem('token')
+          const response = await axios.post('/api/v1/channels', newChannel, { headers: { Authorization: `Bearer ${token}` } })
 
-          return { data: response.data };
-        } catch (error) {
+          return { data: response.data }
+        }
+        catch (error) {
           return {
             error: {
               status: error.response?.status || 'FETCH_ERROR',
               data: error.response?.data || error.message,
             },
-          };
+          }
         }
       },
       invalidatesTags: ['Channel'],
@@ -43,17 +45,18 @@ export const channelsApi = createApi({
     editChannel: builder.mutation({
       queryFn: async (editedChannel) => {
         try {
-          const token = localStorage.getItem('token');
-          const response = await axios.patch(`/api/v1/channels/${editedChannel.id}`, { name: editedChannel.name }, { headers: { Authorization: `Bearer ${token}` } });
+          const token = localStorage.getItem('token')
+          const response = await axios.patch(`/api/v1/channels/${editedChannel.id}`, { name: editedChannel.name }, { headers: { Authorization: `Bearer ${token}` } })
 
-          return { data: response.data };
-        } catch (error) {
+          return { data: response.data }
+        }
+        catch (error) {
           return {
             error: {
               status: error.response?.status || 'FETCH_ERROR',
               data: error.response?.data || error.message,
             },
-          };
+          }
         }
       },
       invalidatesTags: ['Channel'],
@@ -61,24 +64,25 @@ export const channelsApi = createApi({
     deleteChannel: builder.mutation({
       queryFn: async (channelId) => {
         try {
-          const token = localStorage.getItem('token');
-          const response = await axios.delete(`/api/v1/channels/${channelId}`, { headers: { Authorization: `Bearer ${token}` } });
+          const token = localStorage.getItem('token')
+          const response = await axios.delete(`/api/v1/channels/${channelId}`, { headers: { Authorization: `Bearer ${token}` } })
 
-          return { data: response.data };
-        } catch (error) {
+          return { data: response.data }
+        }
+        catch (error) {
           return {
             error: {
               status: error.response?.status || 'FETCH_ERROR',
               data: error.response?.data || error.message,
             },
-          };
+          }
         }
       },
       invalidatesTags: ['Channel'],
     }),
   }),
-});
+})
 
 export const {
   useGetChannelsQuery, useAddChannelMutation, useEditChannelMutation, useDeleteChannelMutation,
-} = channelsApi;
+} = channelsApi

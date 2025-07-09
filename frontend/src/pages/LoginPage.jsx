@@ -64,7 +64,7 @@ const LoginPage = () => {
               </Button>
             </Form>
             <div className="d-flex flex-column mt-3">
-              <Link to="/signup">Нет аккаунта? Зарегистрироваться</Link>
+              <Link to="/signup">Регистрация</Link>
             </div>
           </Col>
         </Row>

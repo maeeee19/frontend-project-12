@@ -1,5 +1,5 @@
-import { toast } from 'react-toastify';
-import i18next from 'i18next';
+import { toast } from 'react-toastify'
+import i18next from 'i18next'
 
 export const showSuccess = (message) => {
   toast.success(message, {
@@ -9,8 +9,8 @@ export const showSuccess = (message) => {
     closeOnClick: true,
     pauseOnHover: true,
     draggable: true,
-  });
-};
+  })
+}
 
 export const showError = (message) => {
   toast.error(message, {
@@ -20,8 +20,8 @@ export const showError = (message) => {
     closeOnClick: true,
     pauseOnHover: true,
     draggable: true,
-  });
-};
+  })
+}
 
 export const showWarning = (message) => {
   toast.warning(message, {
@@ -31,8 +31,8 @@ export const showWarning = (message) => {
     closeOnClick: true,
     pauseOnHover: true,
     draggable: true,
-  });
-};
+  })
+}
 
 export const showInfo = (message) => {
   toast.info(message, {
@@ -42,41 +42,41 @@ export const showInfo = (message) => {
     closeOnClick: true,
     pauseOnHover: true,
     draggable: true,
-  });
-};
+  })
+}
 
 export const showChannelCreated = (channelName) => {
-  showSuccess(i18next.t('notifications.channelCreated', { name: channelName }));
-};
+  showSuccess(i18next.t('notifications.channelCreated', { name: channelName }))
+}
 
 export const showChannelRenamed = (channelName) => {
-  showSuccess(i18next.t('notifications.channelRenamed', { name: channelName }));
-};
+  showSuccess(i18next.t('notifications.channelRenamed', { name: channelName }))
+}
 
 export const showChannelDeleted = (channelName) => {
-  showSuccess(i18next.t('notifications.channelDeleted', { name: channelName }));
-};
+  showSuccess(i18next.t('notifications.channelDeleted', { name: channelName }))
+}
 
 export const showNetworkError = () => {
-  showError(i18next.t('notifications.networkError'));
-};
+  showError(i18next.t('notifications.networkError'))
+}
 
 export const showLoadError = (resource) => {
-  showError(i18next.t('notifications.loadError', { resource }));
-};
+  showError(i18next.t('notifications.loadError', { resource }))
+}
 
 export const showSaveError = (resource) => {
-  showError(i18next.t('notifications.saveError', { resource }));
-};
+  showError(i18next.t('notifications.saveError', { resource }))
+}
 
 export const showMessageSent = () => {
-  showSuccess(i18next.t('notifications.messageSent'));
-};
+  showSuccess(i18next.t('notifications.messageSent'))
+}
 
 export const showMessageError = () => {
-  showError(i18next.t('notifications.messageError'));
-};
+  showError(i18next.t('notifications.messageError'))
+}
 
 export const showConnectionEstablished = () => {
-  showInfo(i18next.t('notifications.connectionEstablished'));
-};
+  showInfo(i18next.t('notifications.connectionEstablished'))
+}
