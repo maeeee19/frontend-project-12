@@ -1,0 +1,84 @@
+{
+  "common": {
+    "loading": "Загрузка...",
+    "error": "Ошибка",
+    "save": "Сохранить",
+    "cancel": "Отмена",
+    "delete": "Удалить",
+    "edit": "Редактировать",
+    "add": "Добавить",
+    "create": "Создать",
+    "send": "Отправить",
+    "sending": "Отправка...",
+    "saving": "Сохранение...",
+    "creating": "Создание..."
+  },
+  "auth": {
+    "login": "Войти",
+    "logout": "Выйти",
+    "username": "Имя пользователя",
+    "password": "Пароль",
+    "loginTitle": "Вход в систему",
+    "loginError": "Ошибка входа",
+    "loginSuccess": "Успешный вход",
+    "greeting": "Привет, {{username}}!"
+  },
+  "channels": {
+    "title": "Каналы",
+    "addChannel": "Добавить канал",
+    "newChannel": "Новый канал",
+    "editChannel": "Редактировать канал",
+    "deleteChannel": "Удалить канал",
+    "channelName": "Название канала",
+    "channelNamePlaceholder": "Название канала",
+    "rename": "Переименовать",
+    "remove": "Удалить",
+    "loadingChannels": "Загрузка каналов...",
+    "validation": {
+      "required": "Название канала обязательно",
+      "minLength": "Минимальная длина 3 символа",
+      "maxLength": "Максимальная длина 20 символов",
+      "unique": "Канал с таким именем уже существует",
+      "editError": "Ошибка редактирования канала",
+      "profanity": "Название канала содержит недопустимые слова"
+    }
+  },
+  "messages": {
+    "title": "Сообщения",
+    "messagePlaceholder": "Введите сообщение",
+    "loadingMessages": "Загрузка сообщений...",
+    "noMessages": "Сообщений пока нет",
+    "loadError": "Ошибка загрузки сообщений",
+    "sendError": "Ошибка отправки сообщения",
+    "profanityWarning": "Сообщение содержит недопустимые слова",
+    "messageCount": "{{count}} сообщений",
+    "messageCount_0": "0 сообщений",
+    "messageCount_1": "{{count}} сообщение",
+    "messageCount_2": "{{count}} сообщения",
+    "messageCount_5": "{{count}} сообщений"
+  },
+  "modals": {
+    "close": "Закрыть",
+    "confirm": "Подтвердить",
+    "deleteConfirm": "Вы уверены, что хотите удалить этот канал?",
+    "deleteWarning": "Это действие нельзя отменить."
+  },
+  "notifications": {
+    "channelCreated": "Канал \"{{name}}\" успешно создан",
+    "channelRenamed": "Канал переименован в \"{{name}}\"",
+    "channelDeleted": "Канал \"{{name}}\" удален",
+    "messageSent": "Сообщение отправлено",
+    "networkError": "Ошибка сети. Проверьте подключение к интернету.",
+    "loadError": "Ошибка загрузки {{resource}}. Попробуйте обновить страницу.",
+    "saveError": "Ошибка сохранения {{resource}}. Попробуйте еще раз.",
+    "messageError": "Ошибка отправки сообщения",
+    "connectionEstablished": "Подключение к серверу установлено"
+  },
+  "errors": {
+    "notFound": {
+      "title": "Страница не найдена",
+      "description": "Запрашиваемая страница не существует или была перемещена.",
+      "backHome": "Вернуться на главную"
+    }
+  }
+} 
