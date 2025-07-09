@@ -93,10 +93,10 @@ const SignupPage = () => {
                 )}
               </Form.Group>
               <Form.Group className="mb-3">
-                <Form.Label>Повторите пароль</Form.Label>
+                <Form.Label>Подтвердите пароль</Form.Label>
                 <Form.Control
                   type="password"
-                  placeholder="Повторите пароль"
+                  placeholder="Подтвердите пароль"
                   onChange={(e) => formik.setFieldValue('passwordConfirm', e.target.value)}
                   value={formik.values.passwordConfirm}
                   isInvalid={formik.touched.passwordConfirm && formik.errors.passwordConfirm}
@@ -111,9 +111,6 @@ const SignupPage = () => {
                 Зарегистрироваться
               </Button>
             </Form>
-            <div className="d-flex flex-column mt-3">
-              <Link to="/login">Есть аккаунт? Войти</Link>
-            </div>
           </Col>
         </Row>
       </Container>
