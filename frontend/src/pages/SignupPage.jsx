@@ -63,8 +63,9 @@ const SignupPage = () => {
           <Col>
             <Form onSubmit={formik.handleSubmit}>
               <Form.Group className="mb-3">
-                <Form.Label>Имя пользователя</Form.Label>
+                <Form.Label htmlFor="username">Имя пользователя</Form.Label>
                 <Form.Control
+                  id="username"
                   type="username"
                   placeholder="Имя пользователя"
                   onChange={(e) => formik.setFieldValue('username', e.target.value)}
@@ -78,8 +79,9 @@ const SignupPage = () => {
                 )}
               </Form.Group>
               <Form.Group className="mb-3">
-                <Form.Label>Пароль</Form.Label>
+                <Form.Label htmlFor="password">Пароль</Form.Label>
                 <Form.Control
+                  id="password"
                   type="password"
                   placeholder="Пароль"
                   onChange={(e) => formik.setFieldValue('password', e.target.value)}
@@ -93,8 +95,9 @@ const SignupPage = () => {
                 )}
               </Form.Group>
               <Form.Group className="mb-3">
-                <Form.Label>Подтвердите пароль</Form.Label>
+                <Form.Label htmlFor="passwordConfirm">Подтвердите пароль</Form.Label>
                 <Form.Control
+                  id="passwordConfirm"
                   type="password"
                   placeholder="Подтвердите пароль"
                   onChange={(e) => formik.setFieldValue('passwordConfirm', e.target.value)}
