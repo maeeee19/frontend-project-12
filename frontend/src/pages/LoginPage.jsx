@@ -27,7 +27,12 @@ const LoginPage = () => {
         navigate('/');
         dispatch(setAuth({ username: values.username, token: result.token }));
       } catch (error) {
-        showSaveError(t('channels.title').toLowerCase().slice(0, -1));
+        console.log(error);
+        if (error.status === 401) {
+          formik.setFieldError('password', 'Неверные имя пользователя или пароль');
+        } else {
+          formik.setFieldError('password', 'Ошибка входа');
+        }
       }
     },
   });
@@ -48,6 +53,11 @@ const LoginPage = () => {
                   value={formik.values.username}
                   isInvalid={isError}
                 />
+                {formik.touched.username && formik.errors.username && (
+                  <Form.Control.Feedback type="invalid">
+                    {formik.errors.password}
+                  </Form.Control.Feedback>
+                )}
               </Form.Group>
               <Form.Group className="mb-3">
                 <Form.Label>Пароль</Form.Label>
@@ -58,6 +68,11 @@ const LoginPage = () => {
                   value={formik.values.password}
                   isInvalid={isError}
                 />
+                {formik.touched.password && formik.errors.password && (
+                  <Form.Control.Feedback type="invalid">
+                    {formik.errors.password}
+                  </Form.Control.Feedback>
+                )}
               </Form.Group>
               <Button className="mt-3" variant="primary" type="submit" disabled={isLoading}>
                 Войти
