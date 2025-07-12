@@ -20,8 +20,6 @@ const SignupSchema = Yup.object().shape({
     .max(20, 'Пароль должен быть не более 20 символов')
     .required('Пароль обязательное поле'),
   passwordConfirm: Yup.string()
-    .min(6, 'Не менее 6 символов')
-    .max(20, 'Пароль должен быть не более 20 символов')
     .required('Повторите пароль')
     .oneOf([Yup.ref('password'), null], 'Пароли должны совпадать'),
 });
