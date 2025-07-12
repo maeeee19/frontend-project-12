@@ -46,15 +46,15 @@ export const showInfo = (message) => {
 }
 
 export const showChannelCreated = (channelName) => {
-  showSuccess(i18next.t('notifications.channelCreated', { name: channelName }))
+  showSuccess(i18next.t('notifications.channelCreated'))
 }
 
 export const showChannelRenamed = (channelName) => {
-  showSuccess(i18next.t('notifications.channelRenamed', { name: channelName }))
+  showSuccess(i18next.t('notifications.channelRenamed'))
 }
 
 export const showChannelDeleted = (channelName) => {
-  showSuccess(i18next.t('notifications.channelDeleted', { name: channelName }))
+  showSuccess(i18next.t('notifications.channelDeleted'))
 }
 
 export const showNetworkError = () => {
