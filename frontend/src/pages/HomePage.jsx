@@ -6,30 +6,15 @@ import { useNavigate } from 'react-router-dom';
 import Appbar from '@/components/Appbar';
 import ChannelsList from '@/components/ChannelsList';
 import MessagesSection from '@/components/MessagesSection';
-import { setAuth } from '@/store/authSlice';
-import { initWebSocket } from '@/services/websocket';
-import { useDispatch } from 'react-redux';
-import { useStore } from 'react-redux';
 
 const HomePage = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const store = useStore();
 
   useEffect(() => {
     const token = localStorage.getItem('token');
 
     if (!token) {
       navigate('/login');
-    }
-  }, []);
-
-  useEffect(() => {
-    const username = localStorage.getItem('username');
-    const token = localStorage.getItem('token');
-    if (username && token) {
-      dispatch(setAuth({ username, token }));
-      initWebSocket(store);
     }
   }, []);
 

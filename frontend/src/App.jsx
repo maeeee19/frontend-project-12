@@ -1,9 +1,12 @@
+import { useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { Provider as RollbarProvider, ErrorBoundary } from '@rollbar/react';
 import { routes } from '@/config/routes';
-import { store } from '@/store/store';
+import { store } from '@/store/store';  
 import ToastContainer from '@/components/ToastContainer';
+import { setAuth } from '@/store/authSlice';
+import { initWebSocket } from '@/services/websocket';
 
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -14,6 +17,17 @@ const rollbarConfig = {
 };
 
 const App = () => {
+  const username = localStorage.getItem('username');
+  const token = localStorage.getItem('token');
+
+  useEffect(() => {
+    if (username && token) {
+      store.dispatch(setAuth({ username, token }));
+      initWebSocket(store);
+    }
+  }, [username, token]); 
+
+
   return (
     <Provider store={store}>
       <RollbarProvider config={rollbarConfig}>
