@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 import { setSelectedChannel, selectChannels } from '@/store/channelsSlice';
 import { useAddChannelMutation } from '@/store/channelsApi';
 import { showChannelCreated, showSaveError } from '@/utils/notifications';
-import { containsProfanity } from '@/utils/profanityFilter';
+import { filterProfanity } from '@/utils/profanityFilter';
 
 const createValidationSchema = (channels, t) => Yup.object().shape({
   name: Yup.string()
@@ -22,10 +22,6 @@ const createValidationSchema = (channels, t) => Yup.object().shape({
 
       return !isDuplicate;
     })
-    .test('no-profanity', t('channels.validation.profanity'), (value) => {
-      if (!value) return true;
-      return !containsProfanity(value);
-    }),
 });
 
 const NewChannelModal = ({ show, onHide }) => {
@@ -40,7 +36,9 @@ const NewChannelModal = ({ show, onHide }) => {
     validationSchema: createValidationSchema(channels, t),
     onSubmit: async (values) => {
       try {
-        const result = await addChannel(values).unwrap();
+        const filteredName = filterProfanity(values.name);
+        console.log(filteredName);
+        const result = await addChannel(filteredName).unwrap();
         dispatch(setSelectedChannel(result));
         showChannelCreated(values.name);
         formik.resetForm();

@@ -27,7 +27,7 @@ export const channelsApi = createApi({
       queryFn: async (newChannel) => {
         try {
           const token = localStorage.getItem('token')
-          const response = await axios.post('/api/v1/channels', newChannel, { headers: { Authorization: `Bearer ${token}` } })
+          const response = await axios.post('/api/v1/channels', { name: newChannel }, { headers: { Authorization: `Bearer ${token}` } })
 
           return { data: response.data }
         }

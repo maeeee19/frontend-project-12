@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { selectChannels } from '@/store/channelsSlice';
 import { useEditChannelMutation } from '@/store/channelsApi';
 import { showChannelRenamed, showSaveError } from '@/utils/notifications';
-import { containsProfanity } from '@/utils/profanityFilter';
+import { filterProfanity } from '@/utils/profanityFilter';
 
 const EditChannelModal = ({ show, onHide, channel }) => {
   const { t } = useTranslation();
@@ -26,10 +26,6 @@ const EditChannelModal = ({ show, onHide, channel }) => {
 
         return !isDuplicate;
       })
-      .test('no-profanity', t('channels.validation.profanity'), (value) => {
-        if (!value) return true;
-        return !containsProfanity(value);
-      }),
   });
   const formik = useFormik({
     initialValues: {
@@ -39,7 +35,8 @@ const EditChannelModal = ({ show, onHide, channel }) => {
     enableReinitialize: true,
     onSubmit: async (values) => {
       try {
-        await editChannel({ id: channel.id, name: values.name }).unwrap();
+        const filteredName = filterProfanity(values.name);
+        await editChannel({ id: channel.id, name: filteredName }).unwrap();
         showChannelRenamed(values.name);
         onHide();
       } catch (error) {
