@@ -12,15 +12,15 @@ import Appbar from '@/components/Appbar';
 
 const SignupSchema = Yup.object().shape({
   username: Yup.string()
-    .min(3, 'Имя пользователя должно быть не менее 3 символов')
-    .max(20, 'Имя пользователя должно быть не более 20 символов')
+    .min(3, 'От 3 до 20 символов')
+    .max(20, 'От 3 до 20 символов')
     .required('Имя пользователя обязательное поле'),
   password: Yup.string()
-    .min(6, 'Пароль должен быть не менее 6 символов')
+    .min(6, 'Не менее 6 символов')
     .max(20, 'Пароль должен быть не более 20 символов')
     .required('Пароль обязательное поле'),
   passwordConfirm: Yup.string()
-    .min(6, 'Пароль должен быть не менее 6 символов')
+    .min(6, 'Не менее 6 символов')
     .max(20, 'Пароль должен быть не более 20 символов')
     .required('Повторите пароль')
     .oneOf([Yup.ref('password'), null], 'Пароли должны совпадать'),
@@ -47,7 +47,7 @@ const SignupPage = () => {
         dispatch(setAuth({ username: values.username, token: result.token }));
       } catch (error) {
         if (error.status === 409) {
-          formik.setFieldError('username', 'Пользователь с таким именем уже существует');
+          formik.setFieldError('username', 'Такой пользователь уже существует');
         } else {
           formik.setFieldError('username', 'Ошибка регистрации');
         }
