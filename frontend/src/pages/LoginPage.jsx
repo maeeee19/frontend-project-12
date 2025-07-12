@@ -45,8 +45,9 @@ const LoginPage = () => {
           <Col>
             <Form onSubmit={formik.handleSubmit}>
               <Form.Group className="mb-3">
-                <Form.Label>Ваш ник</Form.Label>
+                <Form.Label htmlFor="username">Ваш ник</Form.Label>
                 <Form.Control
+                  id="username"
                   type="username"
                   placeholder="Ваш ник"
                   onChange={(e) => formik.setFieldValue('username', e.target.value)}
@@ -60,8 +61,9 @@ const LoginPage = () => {
                 )}
               </Form.Group>
               <Form.Group className="mb-3">
-                <Form.Label>Пароль</Form.Label>
+                <Form.Label htmlFor="password">Пароль</Form.Label>
                 <Form.Control
+                  id="password"
                   type="password"
                   placeholder="Пароль"
                   onChange={(e) => formik.setFieldValue('password', e.target.value)}
