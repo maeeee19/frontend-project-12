@@ -4,15 +4,19 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { selectAuth } from '@/store/authSlice';
+import { useDispatch } from 'react-redux';
+import { setAuth } from '@/store/authSlice';
 
 const Appbar = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const { token, username } = useSelector(selectAuth);
-
+  const dispatch = useDispatch();
+  
   const handleLogout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('username');
+    dispatch(setAuth({ username: '', token: '' }));
     navigate('/login');
   };
 
