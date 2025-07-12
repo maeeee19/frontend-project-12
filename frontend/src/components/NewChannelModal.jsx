@@ -60,8 +60,9 @@ const NewChannelModal = ({ show, onHide }) => {
       <Modal.Body>
         <Form className="d-flex flex-column gap-4" onSubmit={formik.handleSubmit}>
           <Form.Group>
-            <Form.Label>{t('channels.channelName')}</Form.Label>
+            <Form.Label htmlFor="name">{t('channels.channelName')}</Form.Label>
             <Form.Control
+              id="name"
               autoFocus
               type="text"
               placeholder={t('channels.channelNamePlaceholder')}
