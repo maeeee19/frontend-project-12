@@ -3,20 +3,30 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import Appbar from '@/components/Appbar';
 import ChannelsList from '@/components/ChannelsList';
 import MessagesSection from '@/components/MessagesSection';
+import { initWebSocket, disconnectWebSocket } from '@/services/websocket';
 
 const HomePage = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const token = localStorage.getItem('token');
 
     if (!token) {
       navigate('/login');
+      return;
     }
-  }, []);
+
+    initWebSocket(dispatch);
+    
+    return () => {
+      disconnectWebSocket();
+    };
+  }, [navigate, dispatch]);
 
   return (
     <>

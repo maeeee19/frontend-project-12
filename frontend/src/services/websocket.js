@@ -5,39 +5,39 @@ import { showNetworkError } from '@/utils/notifications'
 import { filterProfanity } from '@/utils/profanityFilter'
 
 let socket = null
-let store = null
+let dispatch = null
 
-export const initWebSocket = (storeInstance) => {
-  store = storeInstance
+export const initWebSocket = (dispatchInstance) => {
+  dispatch = dispatchInstance
 
   if (!socket) {
     socket = io('ws://localhost:5002')
 
     socket.on('newMessage', (data) => {
-      if (store) {
+      if (dispatch) {
         const filteredData = {
           ...data,
           text: filterProfanity(data.text),
         }
-        store.dispatch(addMessage(filteredData))
+        dispatch(addMessage(filteredData))
       }
     })
 
     socket.on('newChannel', (data) => {
-      if (store) {
-        store.dispatch(addChannel(data))
+      if (dispatch) {
+        dispatch(addChannel(data))
       }
     })
 
     socket.on('removeChannel', (data) => {
-      if (store) {
-        store.dispatch(removeChannel(data.id))
+      if (dispatch) {
+        dispatch(removeChannel(data.id))
       }
     })
 
     socket.on('renameChannel', (data) => {
-      if (store) {
-        store.dispatch(renameChannel(data))
+      if (dispatch) {
+        dispatch(renameChannel(data))
       }
     })
 

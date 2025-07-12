@@ -6,7 +6,6 @@ import { routes } from '@/config/routes';
 import { store } from '@/store/store';  
 import ToastContainer from '@/components/ToastContainer';
 import { setAuth } from '@/store/authSlice';
-import { initWebSocket } from '@/services/websocket';
 
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -23,7 +22,6 @@ const App = () => {
   useEffect(() => {
     if (username && token) {
       store.dispatch(setAuth({ username, token }));
-      initWebSocket(store);
     }
   }, [username, token]); 
 
