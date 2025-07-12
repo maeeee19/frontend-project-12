@@ -34,6 +34,7 @@
     "rename": "Переименовать",
     "remove": "Удалить",
     "loadingChannels": "Загрузка каналов...",
+    "hiddenLabel": "Управление каналом",
     "validation": {
       "required": "Обязательное поле",
       "minLength": "От 3 до 20 символов",

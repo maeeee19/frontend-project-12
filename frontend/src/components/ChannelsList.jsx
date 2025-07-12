@@ -81,7 +81,9 @@ const ChannelsList = () => {
                           {channel.name}
                         </Button>
 
-                        <Dropdown.Toggle split className="bg-transparent border-1 text-black" id="dropdown-split-basic" />
+                        <Dropdown.Toggle split className="bg-transparent border-1 text-black" id="dropdown-split-basic">
+                          <span className="visually-hidden">{t('channels.hiddenLabel')}</span>
+                        </Dropdown.Toggle>
 
                         <Dropdown.Menu>
                           <Dropdown.Item onClick={() => handleShowEditChannelModal(channel)}>{t('channels.rename')}</Dropdown.Item>
