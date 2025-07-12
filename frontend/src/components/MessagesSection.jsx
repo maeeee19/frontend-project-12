@@ -88,6 +88,7 @@ const MessagesSection = () => {
           type="text"
           placeholder={t('messages.messagePlaceholder')}
           value={message}
+          aria-label="Новое сообщение"
           onChange={(e) => setMessage(e.target.value)}
           onKeyPress={handleKeyPress}
           disabled={isAddingMessage || !selectedChannel}
