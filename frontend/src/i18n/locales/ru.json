@@ -64,9 +64,9 @@
     "deleteWarning": "Это действие нельзя отменить."
   },
   "notifications": {
-    "channelCreated": "Канал \"{{name}}\" успешно создан",
-    "channelRenamed": "Канал переименован в \"{{name}}\"",
-    "channelDeleted": "Канал \"{{name}}\" удален",
+    "channelCreated": "Канал создан",
+    "channelRenamed": "Канал переименован",
+    "channelDeleted": "Канал удалён",
     "messageSent": "Сообщение отправлено",
     "networkError": "Ошибка сети. Проверьте подключение к интернету.",
     "loadError": "Ошибка загрузки {{resource}}. Попробуйте обновить страницу.",
