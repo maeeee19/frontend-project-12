@@ -62,11 +62,11 @@ export const showNetworkError = () => {
 }
 
 export const showLoadError = (resource) => {
-  showError(i18next.t('notifications.loadError', { resource }))
+ // showError(i18next.t('notifications.loadError', { resource }))
 }
 
 export const showSaveError = (resource) => {
-  showError(i18next.t('notifications.saveError', { resource }))
+ // showError(i18next.t('notifications.saveError', { resource }))
 }
 
 export const showMessageSent = () => {
@@ -74,9 +74,9 @@ export const showMessageSent = () => {
 }
 
 export const showMessageError = () => {
-  showError(i18next.t('notifications.messageError'))
+ // showError(i18next.t('notifications.messageError'))
 }
 
 export const showConnectionEstablished = () => {
-  showInfo(i18next.t('notifications.connectionEstablished'))
+ // showInfo(i18next.t('notifications.connectionEstablished'))
 }
