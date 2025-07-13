@@ -12,6 +12,7 @@ export const authApi = createApi({
           return { data: response.data }
         }
         catch (error) {
+          handleAuthError(error);
           return {
             error: {
               status: error.response?.status || 'FETCH_ERROR',
@@ -28,6 +29,7 @@ export const authApi = createApi({
           return { data: response.data }
         }
         catch (error) {
+          handleAuthError(error);
           return {
             error: {
               status: error.response?.status || 'FETCH_ERROR',
