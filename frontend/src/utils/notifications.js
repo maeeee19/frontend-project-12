@@ -58,7 +58,7 @@ export const showChannelDeleted = (channelName) => {
 }
 
 export const showNetworkError = () => {
-  showError(i18next.t('notifications.networkError'))
+  // showError(i18next.t('notifications.networkError'))
 }
 
 export const showLoadError = (resource) => {
