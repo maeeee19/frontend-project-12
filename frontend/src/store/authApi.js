@@ -1,6 +1,5 @@
 import { createApi } from '@reduxjs/toolkit/query/react'
 import axios from 'axios'
-import { handleAuthError } from '@/utils/auth'
 
 export const authApi = createApi({
   reducerPath: 'authApi',
@@ -12,7 +11,6 @@ export const authApi = createApi({
           return { data: response.data }
         }
         catch (error) {
-          handleAuthError(error);
           return {
             error: {
               status: error.response?.status || 'FETCH_ERROR',
@@ -29,7 +27,6 @@ export const authApi = createApi({
           return { data: response.data }
         }
         catch (error) {
-          handleAuthError(error);
           return {
             error: {
               status: error.response?.status || 'FETCH_ERROR',

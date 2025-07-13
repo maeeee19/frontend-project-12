@@ -70,7 +70,7 @@ export const showSaveError = (resource) => {
 }
 
 export const showMessageSent = () => {
-  // showSuccess(i18next.t('notifications.messageSent'))
+  showSuccess(i18next.t('notifications.messageSent'))
 }
 
 export const showMessageError = () => {

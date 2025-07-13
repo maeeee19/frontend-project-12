@@ -3,7 +3,6 @@ import { addMessage } from '@/store/messagesSlice'
 import { addChannel, removeChannel, renameChannel } from '@/store/channelsSlice'
 import { showNetworkError } from '@/utils/notifications'
 import { filterProfanity } from '@/utils/profanityFilter'
-import { handleAuthError } from '@/utils/auth'
 
 let socket = null
 let dispatch = null
@@ -42,13 +41,8 @@ export const initWebSocket = (dispatchInstance) => {
       }
     })
 
-    socket.on('connect_error', (error) => {
-      // Проверяем, не является ли ошибка связанной с аутентификацией
-      if (error?.data?.status === 401) {
-        handleAuthError(error);
-      } else {
-        showNetworkError()
-      }
+    socket.on('connect_error', () => {
+      showNetworkError()
     })
   }
 
