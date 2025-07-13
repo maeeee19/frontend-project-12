@@ -1,5 +1,6 @@
 import { createApi } from '@reduxjs/toolkit/query/react'
 import axios from 'axios'
+import { createAuthHeaders, handleAuthError } from '@/utils/auth'
 
 export const channelsApi = createApi({
   reducerPath: 'channelsApi',
@@ -8,11 +9,11 @@ export const channelsApi = createApi({
     getChannels: builder.query({
       queryFn: async () => {
         try {
-          const token = localStorage.getItem('token')
-          const response = await axios.get('/api/v1/channels', { headers: { Authorization: `Bearer ${token}` } })
+          const response = await axios.get('/api/v1/channels', { headers: createAuthHeaders() })
           return { data: response.data }
         }
         catch (error) {
+          handleAuthError(error);
           return {
             error: {
               status: error.response?.status || 'FETCH_ERROR',
@@ -26,12 +27,12 @@ export const channelsApi = createApi({
     addChannel: builder.mutation({
       queryFn: async (newChannel) => {
         try {
-          const token = localStorage.getItem('token')
-          const response = await axios.post('/api/v1/channels', { name: newChannel }, { headers: { Authorization: `Bearer ${token}` } })
+          const response = await axios.post('/api/v1/channels', { name: newChannel }, { headers: createAuthHeaders() })
 
           return { data: response.data }
         }
         catch (error) {
+          handleAuthError(error);
           return {
             error: {
               status: error.response?.status || 'FETCH_ERROR',
@@ -45,12 +46,12 @@ export const channelsApi = createApi({
     editChannel: builder.mutation({
       queryFn: async (editedChannel) => {
         try {
-          const token = localStorage.getItem('token')
-          const response = await axios.patch(`/api/v1/channels/${editedChannel.id}`, { name: editedChannel.name }, { headers: { Authorization: `Bearer ${token}` } })
+          const response = await axios.patch(`/api/v1/channels/${editedChannel.id}`, { name: editedChannel.name }, { headers: createAuthHeaders() })
 
           return { data: response.data }
         }
         catch (error) {
+          handleAuthError(error);
           return {
             error: {
               status: error.response?.status || 'FETCH_ERROR',
@@ -64,12 +65,12 @@ export const channelsApi = createApi({
     deleteChannel: builder.mutation({
       queryFn: async (channelId) => {
         try {
-          const token = localStorage.getItem('token')
-          const response = await axios.delete(`/api/v1/channels/${channelId}`, { headers: { Authorization: `Bearer ${token}` } })
+          const response = await axios.delete(`/api/v1/channels/${channelId}`, { headers: createAuthHeaders() })
 
           return { data: response.data }
         }
         catch (error) {
+          handleAuthError(error);
           return {
             error: {
               status: error.response?.status || 'FETCH_ERROR',

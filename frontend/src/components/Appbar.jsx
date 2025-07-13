@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { selectAuth } from '@/store/authSlice';
 import { useDispatch } from 'react-redux';
-import { setAuth } from '@/store/authSlice';
+import { clearAuth } from '@/store/authSlice';
 
 const Appbar = () => {
   const { t } = useTranslation();
@@ -14,9 +14,9 @@ const Appbar = () => {
   const dispatch = useDispatch();
   
   const handleLogout = () => {
+    dispatch(clearAuth());
     localStorage.removeItem('token');
     localStorage.removeItem('username');
-    dispatch(setAuth({ username: '', token: '' }));
     navigate('/login');
   };
 

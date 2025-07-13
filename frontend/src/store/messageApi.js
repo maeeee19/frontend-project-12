@@ -1,5 +1,6 @@
 import { createApi } from '@reduxjs/toolkit/query/react'
 import axios from 'axios'
+import { createAuthHeaders, handleAuthError } from '@/utils/auth'
 
 export const messageApi = createApi({
   reducerPath: 'messagesApi',
@@ -8,11 +9,11 @@ export const messageApi = createApi({
     getMessages: builder.query({
       queryFn: async () => {
         try {
-          const token = localStorage.getItem('token')
-          const response = await axios.get('/api/v1/messages', { headers: { Authorization: `Bearer ${token}` } })
+          const response = await axios.get('/api/v1/messages', { headers: createAuthHeaders() })
           return { data: response.data }
         }
         catch (error) {
+          handleAuthError(error);
           return {
             error: {
               status: error.response?.status || 'FETCH_ERROR',
@@ -26,11 +27,11 @@ export const messageApi = createApi({
     addMessage: builder.mutation({
       queryFn: async (newMessage) => {
         try {
-          const token = localStorage.getItem('token')
-          const response = await axios.post('/api/v1/messages', newMessage, { headers: { Authorization: `Bearer ${token}` } })
+          const response = await axios.post('/api/v1/messages', newMessage, { headers: createAuthHeaders() })
           return { data: response.data }
         }
         catch (error) {
+          handleAuthError(error);
           return {
             error: {
               status: error.response?.status || 'FETCH_ERROR',
@@ -44,11 +45,11 @@ export const messageApi = createApi({
     editMessage: builder.mutation({
       queryFn: async (editedMessage) => {
         try {
-          const token = localStorage.getItem('token')
-          const response = await axios.put(`/api/v1/messages/${editedMessage.id}`, editedMessage, { headers: { Authorization: `Bearer ${token}` } })
+          const response = await axios.put(`/api/v1/messages/${editedMessage.id}`, editedMessage, { headers: createAuthHeaders() })
           return { data: response.data }
         }
         catch (error) {
+          handleAuthError(error);
           return {
             error: {
               status: error.response?.status || 'FETCH_ERROR',
@@ -62,11 +63,11 @@ export const messageApi = createApi({
     deleteMessage: builder.mutation({
       queryFn: async (messageId) => {
         try {
-          const token = localStorage.getItem('token')
-          const response = await axios.delete(`/api/v1/messages/${messageId}`, { headers: { Authorization: `Bearer ${token}` } })
+          const response = await axios.delete(`/api/v1/messages/${messageId}`, { headers: createAuthHeaders() })
           return { data: response.data }
         }
         catch (error) {
+          handleAuthError(error);
           return {
             error: {
               status: error.response?.status || 'FETCH_ERROR',

@@ -5,7 +5,7 @@ import { Provider as RollbarProvider, ErrorBoundary } from '@rollbar/react';
 import { routes } from '@/config/routes';
 import { store } from '@/store/store';  
 import ToastContainer from '@/components/ToastContainer';
-import { setAuth } from '@/store/authSlice';
+import { syncAuthToken, setStore } from '@/utils/auth';
 
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -16,14 +16,12 @@ const rollbarConfig = {
 };
 
 const App = () => {
-  const username = localStorage.getItem('username');
-  const token = localStorage.getItem('token');
-
   useEffect(() => {
-    if (username && token) {
-      store.dispatch(setAuth({ username, token }));
-    }
-  }, [username, token]); 
+    // Устанавливаем ссылку на store в auth утилитах
+    setStore(store);
+    // Синхронизируем токен между store и localStorage при загрузке приложения
+    syncAuthToken();
+  }, []); // Запускаем только один раз при монтировании
 
 
   return (
