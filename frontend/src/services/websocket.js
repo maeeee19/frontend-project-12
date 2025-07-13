@@ -19,6 +19,7 @@ export const initWebSocket = (dispatchInstance) => {
           ...data,
           text: filterProfanity(data.text),
         }
+        console.log(filteredData)
         dispatch(addMessage(filteredData))
       }
     })
