@@ -12,7 +12,6 @@ const Appbar = () => {
   const navigate = useNavigate()
   const { token, username } = useSelector(selectAuth)
   const dispatch = useDispatch()
-  
   const handleLogout = () => {
     localStorage.removeItem('token')
     localStorage.removeItem('username')

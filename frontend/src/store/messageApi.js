@@ -4,7 +4,7 @@ import axios from 'axios'
 export const messageApi = createApi({
   reducerPath: 'messagesApi',
   tagTypes: ['Message'],
-  endpoints: builder => ({
+  endpoints: (builder) => ({
     getMessages: builder.query({
       queryFn: async () => {
         try {
@@ -24,7 +24,7 @@ export const messageApi = createApi({
       providesTags: ['Message'],
     }),
     addMessage: builder.mutation({
-      queryFn: async newMessage => {
+      queryFn: async (newMessage) => {
         try {
           const token = localStorage.getItem('token')
           const response = await axios.post('/api/v1/messages', newMessage, { headers: { Authorization: `Bearer ${token}` } })
@@ -42,7 +42,7 @@ export const messageApi = createApi({
       invalidatesTags: ['Message'],
     }),
     editMessage: builder.mutation({
-      queryFn: async editedMessage => {
+      queryFn: async (editedMessage) => {
         try {
           const token = localStorage.getItem('token')
           const response = await axios.put(`/api/v1/messages/${editedMessage.id}`, editedMessage, { headers: { Authorization: `Bearer ${token}` } })
@@ -60,7 +60,7 @@ export const messageApi = createApi({
       invalidatesTags: ['Message'],
     }),
     deleteMessage: builder.mutation({
-      queryFn: async messageId => {
+      queryFn: async (messageId) => {
         try {
           const token = localStorage.getItem('token')
           const response = await axios.delete(`/api/v1/messages/${messageId}`, { headers: { Authorization: `Bearer ${token}` } })

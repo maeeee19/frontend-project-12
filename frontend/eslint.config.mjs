@@ -7,7 +7,7 @@ import stylistic from '@stylistic/eslint-plugin'
 export default defineConfig([
   {
     files: ['**/*.{js,jsx,mjs,cjs}'],
-    plugins: { 
+    plugins: {
       js,
       '@stylistic': stylistic,
     },
@@ -32,6 +32,7 @@ export default defineConfig([
       '@stylistic/semi': ['error', 'never'],
       '@stylistic/indent': ['error', 2],
       '@stylistic/arrow-parens': ['error', 'as-needed'],
+      '@stylistic/brace-style': ['error', 'stroustrup'],
     },
   },
 ], {

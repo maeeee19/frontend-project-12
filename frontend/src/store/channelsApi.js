@@ -4,7 +4,7 @@ import axios from 'axios'
 export const channelsApi = createApi({
   reducerPath: 'channelsApi',
   tagTypes: ['Channel'],
-  endpoints: builder => ({
+  endpoints: (builder) => ({
     getChannels: builder.query({
       queryFn: async () => {
         try {
@@ -24,7 +24,7 @@ export const channelsApi = createApi({
       providesTags: ['Channel'],
     }),
     addChannel: builder.mutation({
-      queryFn: async newChannel => {
+      queryFn: async (newChannel) => {
         try {
           const token = localStorage.getItem('token')
           const response = await axios.post('/api/v1/channels', { name: newChannel }, { headers: { Authorization: `Bearer ${token}` } })
@@ -43,7 +43,7 @@ export const channelsApi = createApi({
       invalidatesTags: ['Channel'],
     }),
     editChannel: builder.mutation({
-      queryFn: async editedChannel => {
+      queryFn: async (editedChannel) => {
         try {
           const token = localStorage.getItem('token')
           const response = await axios.patch(`/api/v1/channels/${editedChannel.id}`, { name: editedChannel.name }, { headers: { Authorization: `Bearer ${token}` } })
@@ -62,7 +62,7 @@ export const channelsApi = createApi({
       invalidatesTags: ['Channel'],
     }),
     deleteChannel: builder.mutation({
-      queryFn: async channelId => {
+      queryFn: async (channelId) => {
         try {
           const token = localStorage.getItem('token')
           const response = await axios.delete(`/api/v1/channels/${channelId}`, { headers: { Authorization: `Bearer ${token}` } })

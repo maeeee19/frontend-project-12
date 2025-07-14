@@ -39,7 +39,8 @@ const EditChannelModal = ({ show, onHide, channel }) => {
         await editChannel({ id: channel.id, name: filteredName }).unwrap()
         showChannelRenamed(values.name)
         onHide()
-      } catch {
+      } 
+      catch {
         showSaveError(t('channels.title').toLowerCase().slice(0, -1))
         formik.setFieldError('name', t('channels.validation.editError'))
       }

@@ -73,8 +73,8 @@ const ChannelsList = () => {
                   as="li"
                   key={channel.id}
                 >
-                  {
-                    channel.removable ? (
+                  {channel.removable
+                    ? (
                       <Dropdown as={ButtonGroup} className="w-100 h-100 d-flex justify-content-between">
                         <Button variant="success" className="w-100 h-100 d-flex justify-content-between border-0 bg-transparent text-black">
                           #
@@ -90,13 +90,13 @@ const ChannelsList = () => {
                           <Dropdown.Item onClick={() => handleDeleteChannel(channel)}>{t('channels.remove')}</Dropdown.Item>
                         </Dropdown.Menu>
                       </Dropdown>
-                    ) : (
+                    )
+                    : (
                       <Button className="w-100 h-100 d-flex justify-content-between border-0 bg-transparent text-black">
                         #
                         {channel.name}
                       </Button>
-                    )
-                  }
+                    )}
                 </ListGroup.Item>
               ))}
             </ListGroup>

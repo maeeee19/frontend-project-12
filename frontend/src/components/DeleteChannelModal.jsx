@@ -9,8 +9,7 @@ import { setSelectedChannel } from '@/store/channelsSlice'
 const DeleteChannelModal = ({ show, onHide, channel }) => {
   const { t } = useTranslation()
   const [deleteChannel, { isLoading }] = useDeleteChannelMutation()
-  const channels = useSelector(state => state.channels.channels) 
-
+  const channels = useSelector(state => state.channels.channels)
   const dispatch = useDispatch()
   const handleDeleteChannel = async () => {
     try {
@@ -19,7 +18,8 @@ const DeleteChannelModal = ({ show, onHide, channel }) => {
       showChannelDeleted(channel.name)
       dispatch(setSelectedChannel(channels[0]))
       onHide()
-    } catch {
+    } 
+    catch {
       showSaveError(t('channels.title').toLowerCase().slice(0, -1))
     }
   }

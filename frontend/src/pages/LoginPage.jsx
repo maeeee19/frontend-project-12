@@ -26,11 +26,13 @@ const LoginPage = () => {
         localStorage.setItem('username', values.username)
         navigate('/')
         dispatch(setAuth({ username: values.username, token: result.token }))
-      } catch (error) {
+      } 
+      catch (error) {
         console.log(error)
         if (error.status === 401) {
           formik.setFieldError('password', 'Неверные имя пользователя или пароль')
-        } else {
+        } 
+        else {
           formik.setFieldError('password', 'Ошибка входа')
         }
       }

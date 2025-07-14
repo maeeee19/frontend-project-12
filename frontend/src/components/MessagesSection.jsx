@@ -36,7 +36,8 @@ const MessagesSection = () => {
         await sendMessage(filteredMessage, username)
         showMessageSent()
         setMessage('')
-      } catch {
+      } 
+      catch {
         showMessageError()
       }
     }

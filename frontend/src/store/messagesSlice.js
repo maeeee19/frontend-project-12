@@ -29,7 +29,7 @@ const messagesSlice = createSlice({
       state.error = action.payload
       state.isLoading = false
     },
-    clearMessages: state => {
+    clearMessages: (state) => {
       state.messages = []
       state.currentChannelId = null
     },

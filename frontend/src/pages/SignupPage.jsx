@@ -36,17 +36,19 @@ const SignupPage = () => {
       passwordConfirm: '',
     },
     validationSchema: SignupSchema,
-    onSubmit: async values => {
+    onSubmit: async (values) => {
       try {
         const result = await signup(values).unwrap()
         localStorage.setItem('token', result.token)
         localStorage.setItem('username', values.username)
         navigate('/')
         dispatch(setAuth({ username: values.username, token: result.token }))
-      } catch (error) {
+      } 
+      catch (error) {
         if (error.status === 409) {
           formik.setFieldError('username', 'Такой пользователь уже существует')
-        } else {
+        } 
+        else {
           formik.setFieldError('username', 'Ошибка регистрации')
         }
       }

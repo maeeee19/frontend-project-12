@@ -12,7 +12,7 @@ catch (error) {
  * @param {string} text - текст для проверки
  * @returns {boolean} - true если содержит нецензурные слова
  */
-export const containsProfanity = text => {
+export const containsProfanity = (text) => {
   if (!text || typeof text !== 'string') return false
   try {
     return leoProfanity.check(text)
@@ -28,7 +28,7 @@ export const containsProfanity = text => {
  * @param {string} text - текст для фильтрации
  * @returns {string} - отфильтрованный текст
  */
-export const filterProfanity = text => {
+export const filterProfanity = (text) => {
   if (!text || typeof text !== 'string') return text
 
   try {
@@ -58,7 +58,7 @@ export const getProfanityList = () => {
  * Добавляет кастомные слова в список для фильтрации
  * @param {Array} words - массив слов для добавления
  */
-export const addCustomProfanityWords = words => {
+export const addCustomProfanityWords = (words) => {
   if (Array.isArray(words)) {
     words.forEach(word => {
       leoProfanity.add(word.toLowerCase())
@@ -70,7 +70,7 @@ export const addCustomProfanityWords = words => {
  * Удаляет слова из списка фильтрации
  * @param {Array} words - массив слов для удаления
  */
-export const removeProfanityWords = words => {
+export const removeProfanityWords = (words) => {
   if (Array.isArray(words)) {
     words.forEach(word => {
       leoProfanity.remove(word.toLowerCase())
@@ -83,7 +83,7 @@ export const removeProfanityWords = words => {
  * @param {string} text - исходный текст
  * @returns {object} - объект с результатами проверки
  */
-export const validateAndFilterText = text => {
+export const validateAndFilterText = (text) => {
   if (!text || typeof text !== 'string') {
     return {
       isValid: false,

@@ -7,13 +7,13 @@ import { filterProfanity } from '@/utils/profanityFilter'
 let socket = null
 let dispatch = null
 
-export const initWebSocket = dispatchInstance => {
+export const initWebSocket = (dispatchInstance) => {
   dispatch = dispatchInstance
 
   if (!socket) {
     socket = io('/')
 
-    socket.on('newMessage', data => {
+    socket.on('newMessage', (data) => {
       if (dispatch) {
         const filteredData = {
           ...data,
@@ -23,19 +23,19 @@ export const initWebSocket = dispatchInstance => {
       }
     })
 
-    socket.on('newChannel', data => {
+    socket.on('newChannel', (data) => {
       if (dispatch) {
         dispatch(addChannel(data))
       }
     })
 
-    socket.on('removeChannel', data => {
+    socket.on('removeChannel', (data) => {
       if (dispatch) {
         dispatch(removeChannel(data.id))
       }
     })
 
-    socket.on('renameChannel', data => {
+    socket.on('renameChannel', (data) => {
       if (dispatch) {
         dispatch(renameChannel(data))
       }
