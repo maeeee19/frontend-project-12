@@ -1,14 +1,14 @@
-import { useFormik } from 'formik';
-import { useNavigate, Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import * as Yup from 'yup';
+import { useFormik } from 'formik'
+import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import * as Yup from 'yup'
 import {
   Form, Button, Container, Row, Col,
-} from 'react-bootstrap';
-import { setAuth } from '@/store/authSlice';
-import { useSignupMutation } from '@/store/authApi';
+} from 'react-bootstrap'
+import { setAuth } from '@/store/authSlice'
+import { useSignupMutation } from '@/store/authApi'
 
-import Appbar from '@/components/Appbar';
+import Appbar from '@/components/Appbar'
 
 const SignupSchema = Yup.object().shape({
   username: Yup.string()
@@ -22,12 +22,12 @@ const SignupSchema = Yup.object().shape({
   passwordConfirm: Yup.string()
     .required('Повторите пароль')
     .oneOf([Yup.ref('password'), null], 'Пароли должны совпадать'),
-});
+})
 
 const SignupPage = () => {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const [signup, { isLoading }] = useSignupMutation();
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const [signup, { isLoading }] = useSignupMutation()
 
   const formik = useFormik({
     initialValues: {
@@ -38,20 +38,20 @@ const SignupPage = () => {
     validationSchema: SignupSchema,
     onSubmit: async (values) => {
       try {
-        const result = await signup(values).unwrap();
-        localStorage.setItem('token', result.token);
-        localStorage.setItem('username', values.username);
-        navigate('/');
-        dispatch(setAuth({ username: values.username, token: result.token }));
+        const result = await signup(values).unwrap()
+        localStorage.setItem('token', result.token)
+        localStorage.setItem('username', values.username)
+        navigate('/')
+        dispatch(setAuth({ username: values.username, token: result.token }))
       } catch (error) {
         if (error.status === 409) {
-          formik.setFieldError('username', 'Такой пользователь уже существует');
+          formik.setFieldError('username', 'Такой пользователь уже существует')
         } else {
-          formik.setFieldError('username', 'Ошибка регистрации');
+          formik.setFieldError('username', 'Ошибка регистрации')
         }
       }
     },
-  });
+  })
 
   return (
     <>
@@ -116,7 +116,7 @@ const SignupPage = () => {
         </Row>
       </Container>
     </>
-  );
-};
+  )
+}
 
-export default SignupPage;
+export default SignupPage

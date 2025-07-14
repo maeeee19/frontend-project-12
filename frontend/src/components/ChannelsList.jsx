@@ -1,54 +1,54 @@
 import {
   ListGroup, Button, Col, Container, Row, Dropdown, ButtonGroup,
-} from 'react-bootstrap';
-import { useDispatch } from 'react-redux';
-import { useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { setSelectedChannel } from '@/store/channelsSlice';
-import { useChannels } from '@/hooks/useChannels';
-import NewChannelModal from './NewChannelModal';
-import EditChannelModal from './EditChannelModal';
-import DeleteChannelModal from './DeleteChannelModal';
+} from 'react-bootstrap'
+import { useDispatch } from 'react-redux'
+import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
+import { setSelectedChannel } from '@/store/channelsSlice'
+import { useChannels } from '@/hooks/useChannels'
+import NewChannelModal from './NewChannelModal'
+import EditChannelModal from './EditChannelModal'
+import DeleteChannelModal from './DeleteChannelModal'
 
 const ChannelsList = () => {
-  const { t } = useTranslation();
-  const [showNewChannelModal, setShowNewChannelModal] = useState(false);
-  const [showEditChannelModal, setShowEditChannelModal] = useState(false);
-  const [showDeleteChannelModal, setShowDeleteChannelModal] = useState(false);
-  const dispatch = useDispatch();
-  const { channels, selectedChannel, isLoading } = useChannels();
-  const [channelToEdit, setChannelToEdit] = useState(null);
-  const [channelToDelete, setChannelToDelete] = useState(null);
+  const { t } = useTranslation()
+  const [showNewChannelModal, setShowNewChannelModal] = useState(false)
+  const [showEditChannelModal, setShowEditChannelModal] = useState(false)
+  const [showDeleteChannelModal, setShowDeleteChannelModal] = useState(false)
+  const dispatch = useDispatch()
+  const { channels, selectedChannel, isLoading } = useChannels()
+  const [channelToEdit, setChannelToEdit] = useState(null)
+  const [channelToDelete, setChannelToDelete] = useState(null)
 
   const handleChannelClick = (channel) => {
-    dispatch(setSelectedChannel(channel));
-  };
+    dispatch(setSelectedChannel(channel))
+  }
 
   const handleShowNewChannelModal = () => {
-    setShowNewChannelModal(true);
-  };
+    setShowNewChannelModal(true)
+  }
 
   const handleHideNewChannelModal = () => {
-    setShowNewChannelModal(false);
-  };
+    setShowNewChannelModal(false)
+  }
 
   const handleShowEditChannelModal = (channel) => {
-    setChannelToEdit(channel);
-    setShowEditChannelModal(true);
-  };
+    setChannelToEdit(channel)
+    setShowEditChannelModal(true)
+  }
 
   const handleHideEditChannelModal = () => {
-    setShowEditChannelModal(false);
-  };
+    setShowEditChannelModal(false)
+  }
 
   const handleDeleteChannel = (channelId) => {
-    setChannelToDelete(channelId);
-    setShowDeleteChannelModal(true);
-  };
+    setChannelToDelete(channelId)
+    setShowDeleteChannelModal(true)
+  }
 
   const handleHideDeleteChannelModal = () => {
-    setShowDeleteChannelModal(false);
-  };
+    setShowDeleteChannelModal(false)
+  }
 
   return (
     <>
@@ -104,7 +104,7 @@ const ChannelsList = () => {
         </Row>
       </Container>
     </>
-  );
-};
+  )
+}
 
-export default ChannelsList;
+export default ChannelsList

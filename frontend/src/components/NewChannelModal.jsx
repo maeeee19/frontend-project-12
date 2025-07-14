@@ -1,13 +1,13 @@
-import { Modal, Form, Button } from 'react-bootstrap';
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
-import { useDispatch, useSelector } from 'react-redux';
+import { Modal, Form, Button } from 'react-bootstrap'
+import { useFormik } from 'formik'
+import * as Yup from 'yup'
+import { useDispatch, useSelector } from 'react-redux'
 
-import { useTranslation } from 'react-i18next';
-import { setSelectedChannel, selectChannels } from '@/store/channelsSlice';
-import { useAddChannelMutation } from '@/store/channelsApi';
-import { showChannelCreated, showSaveError } from '@/utils/notifications';
-import { filterProfanity } from '@/utils/profanityFilter';
+import { useTranslation } from 'react-i18next'
+import { setSelectedChannel, selectChannels } from '@/store/channelsSlice'
+import { useAddChannelMutation } from '@/store/channelsApi'
+import { showChannelCreated, showSaveError } from '@/utils/notifications'
+import { filterProfanity } from '@/utils/profanityFilter'
 
 const createValidationSchema = (channels, t) => Yup.object().shape({
   name: Yup.string()
@@ -15,20 +15,20 @@ const createValidationSchema = (channels, t) => Yup.object().shape({
     .min(3, t('channels.validation.minLength'))
     .max(20, t('channels.validation.maxLength'))
     .test('unique-name', t('channels.validation.unique'), (value) => {
-      if (!value || !channels) return true;
+      if (!value || !channels) return true
 
-      const normalizedValue = value.trim().toLowerCase();
-      const isDuplicate = channels.some((channel) => channel.name.toLowerCase() === normalizedValue);
+      const normalizedValue = value.trim().toLowerCase()
+      const isDuplicate = channels.some((channel) => channel.name.toLowerCase() === normalizedValue)
 
-      return !isDuplicate;
-    })
-});
+      return !isDuplicate
+    }),
+})
 
 const NewChannelModal = ({ show, onHide }) => {
-  const { t } = useTranslation();
-  const [addChannel, { isLoading, isError }] = useAddChannelMutation();
-  const dispatch = useDispatch();
-  const channels = useSelector(selectChannels);
+  const { t } = useTranslation()
+  const [addChannel, { isLoading, isError }] = useAddChannelMutation()
+  const dispatch = useDispatch()
+  const channels = useSelector(selectChannels)
   const formik = useFormik({
     initialValues: {
       name: '',
@@ -36,19 +36,19 @@ const NewChannelModal = ({ show, onHide }) => {
     validationSchema: createValidationSchema(channels, t),
     onSubmit: async (values) => {
       try {
-        const filteredName = filterProfanity(values.name);
-        console.log(filteredName);
-        const result = await addChannel(filteredName).unwrap();
-        dispatch(setSelectedChannel(result));
-        showChannelCreated(values.name);
-        formik.resetForm();
-        onHide();
+        const filteredName = filterProfanity(values.name)
+        console.log(filteredName)
+        const result = await addChannel(filteredName).unwrap()
+        dispatch(setSelectedChannel(result))
+        showChannelCreated(values.name)
+        formik.resetForm()
+        onHide()
       } catch (error) {
-        showSaveError(t('channels.title').toLowerCase().slice(0, -1));
-        formik.setFieldError('name', 'Ошибка создания канала');
+        showSaveError(t('channels.title').toLowerCase().slice(0, -1))
+        formik.setFieldError('name', 'Ошибка создания канала')
       }
     },
-  });
+  })
 
   return (
     <Modal show={show} onHide={onHide}>
@@ -69,7 +69,7 @@ const NewChannelModal = ({ show, onHide }) => {
               isInvalid={formik.touched.name && formik.errors.name}
               onKeyPress={(e) => {
                 if (e.key === 'Enter') {
-                  formik.handleSubmit();
+                  formik.handleSubmit()
                 }
               }}
             />
@@ -89,7 +89,7 @@ const NewChannelModal = ({ show, onHide }) => {
         </Form>
       </Modal.Body>
     </Modal>
-  );
-};
+  )
+}
 
-export default NewChannelModal;
+export default NewChannelModal

@@ -1,18 +1,18 @@
 import {
   Form, Button, Container, Row, Col,
-} from 'react-bootstrap';
-import { Link, useNavigate } from 'react-router-dom';
-import { useFormik } from 'formik';
+} from 'react-bootstrap'
+import { Link, useNavigate } from 'react-router-dom'
+import { useFormik } from 'formik'
 
-import { useDispatch } from 'react-redux';
-import { setAuth } from '@/store/authSlice';
-import { useLoginMutation } from '@/store/authApi';
-import Appbar from '@/components/Appbar';
+import { useDispatch } from 'react-redux'
+import { setAuth } from '@/store/authSlice'
+import { useLoginMutation } from '@/store/authApi'
+import Appbar from '@/components/Appbar'
 
 const LoginPage = () => {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const [login, { isLoading, isError }] = useLoginMutation();
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const [login, { isLoading, isError }] = useLoginMutation()
 
   const formik = useFormik({
     initialValues: {
@@ -21,21 +21,21 @@ const LoginPage = () => {
     },
     onSubmit: async (values) => {
       try {
-        const result = await login(values).unwrap();
-        localStorage.setItem('token', result.token);
-        localStorage.setItem('username', values.username);
-        navigate('/');
-        dispatch(setAuth({ username: values.username, token: result.token }));
+        const result = await login(values).unwrap()
+        localStorage.setItem('token', result.token)
+        localStorage.setItem('username', values.username)
+        navigate('/')
+        dispatch(setAuth({ username: values.username, token: result.token }))
       } catch (error) {
-        console.log(error);
+        console.log(error)
         if (error.status === 401) {
-          formik.setFieldError('password', 'Неверные имя пользователя или пароль');
+          formik.setFieldError('password', 'Неверные имя пользователя или пароль')
         } else {
-          formik.setFieldError('password', 'Ошибка входа');
+          formik.setFieldError('password', 'Ошибка входа')
         }
       }
     },
-  });
+  })
 
   return (
     <>
@@ -87,7 +87,7 @@ const LoginPage = () => {
         </Row>
       </Container>
     </>
-  );
-};
+  )
+}
 
-export default LoginPage;
+export default LoginPage

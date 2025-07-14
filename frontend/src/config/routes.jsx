@@ -1,7 +1,7 @@
-import HomePage from '@/pages/HomePage';
-import LoginPage from '@/pages/LoginPage';
-import NotFoundPage from '@/pages/NotFoundPage';
-import SignupPage from '@/pages/SignupPage';
+import HomePage from '@/pages/HomePage'
+import LoginPage from '@/pages/LoginPage'
+import NotFoundPage from '@/pages/NotFoundPage'
+import SignupPage from '@/pages/SignupPage'
 
 export const routes = [
   {
@@ -20,4 +20,4 @@ export const routes = [
     path: '*',
     element: <NotFoundPage />,
   },
-];
+]

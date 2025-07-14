@@ -1,12 +1,12 @@
 import {
   Container, Row, Col, Button,
-} from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
-import Appbar from '@/components/Appbar';
+} from 'react-bootstrap'
+import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
+import Appbar from '@/components/Appbar'
 
 const NotFoundPage = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation()
 
   return (
     <>
@@ -26,7 +26,7 @@ const NotFoundPage = () => {
         </Row>
       </Container>
     </>
-  );
-};
+  )
+}
 
-export default NotFoundPage;
+export default NotFoundPage

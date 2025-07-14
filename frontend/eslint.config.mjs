@@ -6,25 +6,30 @@ import stylistic from '@stylistic/eslint-plugin'
 
 export default defineConfig([
   {
-    files: ['**/*.{js,mjs,cjs}'],
+    files: ['**/*.{js,jsx,mjs,cjs}'],
     plugins: { 
       js,
       '@stylistic': stylistic,
     },
     extends: ['js/recommended'],
-    rules: {
-      '@stylistic/quotes': ['error', 'single'],
-      '@stylistic/comma-dangle': ['error', 'always-multiline'],
-      '@stylistic/eol-last': ['error', 'always'],
-    },
-  },
-  {
-    files: ['**/*.{js,mjs,cjs}'],
     languageOptions: {
+      parserOptions: {
+        ecmaVersion: 'latest',
+        sourceType: 'module',
+        ecmaFeatures: {
+          jsx: true,
+        },
+      },
       globals: {
         ...globals.browser,
         ...globals.node,
       },
+    },
+    rules: {
+      '@stylistic/quotes': ['error', 'single'],
+      '@stylistic/comma-dangle': ['error', 'always-multiline'],
+      '@stylistic/eol-last': ['error', 'always'],
+      '@stylistic/semi': ['error', 'never'],
     },
   },
 ], {
@@ -33,7 +38,6 @@ export default defineConfig([
     'dist/**',
     'build/**',
     'public/**',
-    '**/*.jsx',
     '**/*.ts',
     '**/*.tsx',
     'vite.config.js',

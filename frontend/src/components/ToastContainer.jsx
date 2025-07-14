@@ -1,5 +1,5 @@
-import { ToastContainer as ToastifyContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer as ToastifyContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 const ToastContainer = () => (
   <ToastifyContainer
@@ -15,6 +15,6 @@ const ToastContainer = () => (
     theme="light"
     limit={3}
   />
-);
+)
 
-export default ToastContainer;
+export default ToastContainer
