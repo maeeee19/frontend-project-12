@@ -36,13 +36,13 @@ const MessagesSection = () => {
         await sendMessage(filteredMessage, username)
         showMessageSent()
         setMessage('')
-      } catch (error) {
+      } catch {
         showMessageError()
       }
     }
   }
 
-  const handleKeyPress = e => {
+  const handleKeyPress = (e) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault()
       handleSendMessage()

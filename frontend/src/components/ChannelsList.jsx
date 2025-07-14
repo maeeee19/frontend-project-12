@@ -20,7 +20,7 @@ const ChannelsList = () => {
   const [channelToEdit, setChannelToEdit] = useState(null)
   const [channelToDelete, setChannelToDelete] = useState(null)
 
-  const handleChannelClick = channel => {
+  const handleChannelClick = (channel) => {
     dispatch(setSelectedChannel(channel))
   }
 
@@ -32,7 +32,7 @@ const ChannelsList = () => {
     setShowNewChannelModal(false)
   }
 
-  const handleShowEditChannelModal = channel => {
+  const handleShowEditChannelModal = (channel) => {
     setChannelToEdit(channel)
     setShowEditChannelModal(true)
   }
@@ -41,7 +41,7 @@ const ChannelsList = () => {
     setShowEditChannelModal(false)
   }
 
-  const handleDeleteChannel = channelId => {
+  const handleDeleteChannel = (channelId) => {
     setChannelToDelete(channelId)
     setShowDeleteChannelModal(true)
   }

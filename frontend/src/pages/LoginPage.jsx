@@ -19,7 +19,7 @@ const LoginPage = () => {
       username: '',
       password: '',
     },
-    onSubmit: async values => {
+    onSubmit: async (values) => {
       try {
         const result = await login(values).unwrap()
         localStorage.setItem('token', result.token)
