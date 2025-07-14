@@ -4,7 +4,7 @@ import axios from 'axios'
 export const channelsApi = createApi({
   reducerPath: 'channelsApi',
   tagTypes: ['Channel'],
-  endpoints: (builder) => ({
+  endpoints: builder => ({
     getChannels: builder.query({
       queryFn: async () => {
         try {

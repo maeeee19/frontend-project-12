@@ -4,7 +4,7 @@ import axios from 'axios'
 export const messageApi = createApi({
   reducerPath: 'messagesApi',
   tagTypes: ['Message'],
-  endpoints: (builder) => ({
+  endpoints: builder => ({
     getMessages: builder.query({
       queryFn: async () => {
         try {

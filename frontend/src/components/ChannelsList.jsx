@@ -75,28 +75,28 @@ const ChannelsList = () => {
                 >
                   {channel.removable
                     ? (
-                      <Dropdown as={ButtonGroup} className="w-100 h-100 d-flex justify-content-between">
-                        <Button variant="success" className="w-100 h-100 d-flex justify-content-between border-0 bg-transparent text-black">
+                        <Dropdown as={ButtonGroup} className="w-100 h-100 d-flex justify-content-between">
+                          <Button variant="success" className="w-100 h-100 d-flex justify-content-between border-0 bg-transparent text-black">
+                            #
+                            {channel.name}
+                          </Button>
+
+                          <Dropdown.Toggle split className="bg-transparent border-1 text-black" id="dropdown-split-basic">
+                            <span className="visually-hidden">{t('channels.hiddenLabel')}</span>
+                          </Dropdown.Toggle>
+
+                          <Dropdown.Menu>
+                            <Dropdown.Item onClick={() => handleShowEditChannelModal(channel)}>{t('channels.rename')}</Dropdown.Item>
+                            <Dropdown.Item onClick={() => handleDeleteChannel(channel)}>{t('channels.remove')}</Dropdown.Item>
+                          </Dropdown.Menu>
+                        </Dropdown>
+                      )
+                    : (
+                        <Button className="w-100 h-100 d-flex justify-content-between border-0 bg-transparent text-black">
                           #
                           {channel.name}
                         </Button>
-
-                        <Dropdown.Toggle split className="bg-transparent border-1 text-black" id="dropdown-split-basic">
-                          <span className="visually-hidden">{t('channels.hiddenLabel')}</span>
-                        </Dropdown.Toggle>
-
-                        <Dropdown.Menu>
-                          <Dropdown.Item onClick={() => handleShowEditChannelModal(channel)}>{t('channels.rename')}</Dropdown.Item>
-                          <Dropdown.Item onClick={() => handleDeleteChannel(channel)}>{t('channels.remove')}</Dropdown.Item>
-                        </Dropdown.Menu>
-                      </Dropdown>
-                    )
-                    : (
-                      <Button className="w-100 h-100 d-flex justify-content-between border-0 bg-transparent text-black">
-                        #
-                        {channel.name}
-                      </Button>
-                    )}
+                      )}
                 </ListGroup.Item>
               ))}
             </ListGroup>

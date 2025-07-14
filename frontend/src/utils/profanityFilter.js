@@ -60,7 +60,7 @@ export const getProfanityList = () => {
  */
 export const addCustomProfanityWords = (words) => {
   if (Array.isArray(words)) {
-    words.forEach(word => {
+    words.forEach((word) => {
       leoProfanity.add(word.toLowerCase())
     })
   }
@@ -72,7 +72,7 @@ export const addCustomProfanityWords = (words) => {
  */
 export const removeProfanityWords = (words) => {
   if (Array.isArray(words)) {
-    words.forEach(word => {
+    words.forEach((word) => {
       leoProfanity.remove(word.toLowerCase())
     })
   }
