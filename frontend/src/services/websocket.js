@@ -11,7 +11,7 @@ export const initWebSocket = (dispatchInstance) => {
   dispatch = dispatchInstance
 
   if (!socket) {
-    socket = io('ws://localhost:5002')
+    socket = io('/')
 
     socket.on('newMessage', (data) => {
       if (dispatch) {
@@ -19,7 +19,6 @@ export const initWebSocket = (dispatchInstance) => {
           ...data,
           text: filterProfanity(data.text),
         }
-        console.log(filteredData)
         dispatch(addMessage(filteredData))
       }
     })

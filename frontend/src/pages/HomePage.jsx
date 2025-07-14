@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux';
 import Appbar from '@/components/Appbar';
 import ChannelsList from '@/components/ChannelsList';
 import MessagesSection from '@/components/MessagesSection';
-import { initWebSocket, disconnectWebSocket } from '@/services/websocket';
+import { initWebSocket } from '@/services/websocket';
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -22,10 +22,6 @@ const HomePage = () => {
     }
 
     initWebSocket(dispatch);
-    
-    return () => {
-      disconnectWebSocket();
-    };
   }, [navigate, dispatch]);
 
   return (
