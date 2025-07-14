@@ -18,7 +18,7 @@ const DeleteChannelModal = ({ show, onHide, channel }) => {
       showChannelDeleted(channel.name)
       dispatch(setSelectedChannel(channels[0]))
       onHide()
-    } 
+    }
     catch {
       showSaveError(t('channels.title').toLowerCase().slice(0, -1))
     }

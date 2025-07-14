@@ -43,11 +43,11 @@ const SignupPage = () => {
         localStorage.setItem('username', values.username)
         navigate('/')
         dispatch(setAuth({ username: values.username, token: result.token }))
-      } 
+      }
       catch (error) {
         if (error.status === 409) {
           formik.setFieldError('username', 'Такой пользователь уже существует')
-        } 
+        }
         else {
           formik.setFieldError('username', 'Ошибка регистрации')
         }

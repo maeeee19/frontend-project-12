@@ -43,7 +43,7 @@ const NewChannelModal = ({ show, onHide }) => {
         showChannelCreated(values.name)
         formik.resetForm()
         onHide()
-      } 
+      }
       catch {
         showSaveError(t('channels.title').toLowerCase().slice(0, -1))
         formik.setFieldError('name', 'Ошибка создания канала')
