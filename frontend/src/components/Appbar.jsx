@@ -25,10 +25,10 @@ const Appbar = () => {
       <div className="container">
         <Navbar.Brand as="a" href="/">Hexlet Chat</Navbar.Brand>
         {token && (
-        <div className="d-flex align-items-center gap-3">
-          <span className="text-muted">{t('auth.greeting', { username })}</span>
-          <Button variant="outline-primary" onClick={handleLogout}>{t('auth.logout')}</Button>
-        </div>
+          <div className="d-flex align-items-center gap-3">
+            <span className="text-muted">{t('auth.greeting', { username })}</span>
+            <Button variant="outline-primary" onClick={handleLogout}>{t('auth.logout')}</Button>
+          </div>
         )}
       </div>
     </Navbar>

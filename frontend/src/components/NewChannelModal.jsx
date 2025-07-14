@@ -14,11 +14,11 @@ const createValidationSchema = (channels, t) => Yup.object().shape({
     .required(t('channels.validation.required'))
     .min(3, t('channels.validation.minLength'))
     .max(20, t('channels.validation.maxLength'))
-    .test('unique-name', t('channels.validation.unique'), (value) => {
+    .test('unique-name', t('channels.validation.unique'), value => {
       if (!value || !channels) return true
 
       const normalizedValue = value.trim().toLowerCase()
-      const isDuplicate = channels.some((channel) => channel.name.toLowerCase() === normalizedValue)
+      const isDuplicate = channels.some(channel => channel.name.toLowerCase() === normalizedValue)
 
       return !isDuplicate
     }),
@@ -26,7 +26,7 @@ const createValidationSchema = (channels, t) => Yup.object().shape({
 
 const NewChannelModal = ({ show, onHide }) => {
   const { t } = useTranslation()
-  const [addChannel, { isLoading, isError }] = useAddChannelMutation()
+  const [addChannel, { isLoading }] = useAddChannelMutation()
   const dispatch = useDispatch()
   const channels = useSelector(selectChannels)
   const formik = useFormik({
@@ -34,7 +34,7 @@ const NewChannelModal = ({ show, onHide }) => {
       name: '',
     },
     validationSchema: createValidationSchema(channels, t),
-    onSubmit: async (values) => {
+    onSubmit: async values => {
       try {
         const filteredName = filterProfanity(values.name)
         console.log(filteredName)
@@ -43,7 +43,7 @@ const NewChannelModal = ({ show, onHide }) => {
         showChannelCreated(values.name)
         formik.resetForm()
         onHide()
-      } catch (error) {
+      } catch {
         showSaveError(t('channels.title').toLowerCase().slice(0, -1))
         formik.setFieldError('name', 'Ошибка создания канала')
       }
@@ -64,19 +64,19 @@ const NewChannelModal = ({ show, onHide }) => {
               autoFocus
               type="text"
               placeholder={t('channels.channelNamePlaceholder')}
-              onChange={(e) => formik.setFieldValue('name', e.target.value)}
+              onChange={e => formik.setFieldValue('name', e.target.value)}
               value={formik.values.name}
               isInvalid={formik.touched.name && formik.errors.name}
-              onKeyPress={(e) => {
+              onKeyPress={e => {
                 if (e.key === 'Enter') {
                   formik.handleSubmit()
                 }
               }}
             />
             {formik.touched.name && formik.errors.name && (
-            <Form.Control.Feedback type="invalid">
-              {formik.errors.name}
-            </Form.Control.Feedback>
+              <Form.Control.Feedback type="invalid">
+                {formik.errors.name}
+              </Form.Control.Feedback>
             )}
           </Form.Group>
           <Button

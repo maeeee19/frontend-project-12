@@ -13,7 +13,7 @@ import {
   selectMessagesError,
 } from '@/store/messagesSlice'
 
-export const useMessages = (channelId) => {
+export const useMessages = channelId => {
   const dispatch = useDispatch()
   const { data: apiMessages, isLoading: apiLoading, error: apiError } = useGetMessagesQuery()
   const [addMessageMutation, { isLoading: isAddingMessage }] = useAddMessageMutation()

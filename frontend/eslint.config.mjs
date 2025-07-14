@@ -30,6 +30,8 @@ export default defineConfig([
       '@stylistic/comma-dangle': ['error', 'always-multiline'],
       '@stylistic/eol-last': ['error', 'always'],
       '@stylistic/semi': ['error', 'never'],
+      '@stylistic/indent': ['error', 2],
+      '@stylistic/arrow-parens': ['error', 'as-needed'],
     },
   },
 ], {

@@ -36,7 +36,7 @@ const SignupPage = () => {
       passwordConfirm: '',
     },
     validationSchema: SignupSchema,
-    onSubmit: async (values) => {
+    onSubmit: async values => {
       try {
         const result = await signup(values).unwrap()
         localStorage.setItem('token', result.token)
@@ -66,14 +66,14 @@ const SignupPage = () => {
                   id="username"
                   type="username"
                   placeholder="Имя пользователя"
-                  onChange={(e) => formik.setFieldValue('username', e.target.value)}
+                  onChange={e => formik.setFieldValue('username', e.target.value)}
                   value={formik.values.username}
                   isInvalid={formik.touched.username && formik.errors.username}
                 />
                 {formik.touched.username && formik.errors.username && (
-                <Form.Control.Feedback type="invalid">
-                  {formik.errors.username}
-                </Form.Control.Feedback>
+                  <Form.Control.Feedback type="invalid">
+                    {formik.errors.username}
+                  </Form.Control.Feedback>
                 )}
               </Form.Group>
               <Form.Group className="mb-3">
@@ -82,14 +82,14 @@ const SignupPage = () => {
                   id="password"
                   type="password"
                   placeholder="Пароль"
-                  onChange={(e) => formik.setFieldValue('password', e.target.value)}
+                  onChange={e => formik.setFieldValue('password', e.target.value)}
                   value={formik.values.password}
                   isInvalid={formik.touched.password && formik.errors.password}
                 />
                 {formik.touched.password && formik.errors.password && (
-                <Form.Control.Feedback type="invalid">
-                  {formik.errors.password}
-                </Form.Control.Feedback>
+                  <Form.Control.Feedback type="invalid">
+                    {formik.errors.password}
+                  </Form.Control.Feedback>
                 )}
               </Form.Group>
               <Form.Group className="mb-3">
@@ -98,14 +98,14 @@ const SignupPage = () => {
                   id="passwordConfirm"
                   type="password"
                   placeholder="Подтвердите пароль"
-                  onChange={(e) => formik.setFieldValue('passwordConfirm', e.target.value)}
+                  onChange={e => formik.setFieldValue('passwordConfirm', e.target.value)}
                   value={formik.values.passwordConfirm}
                   isInvalid={formik.touched.passwordConfirm && formik.errors.passwordConfirm}
                 />
                 {formik.touched.passwordConfirm && formik.errors.passwordConfirm && (
-                <Form.Control.Feedback type="invalid">
-                  {formik.errors.passwordConfirm}
-                </Form.Control.Feedback>
+                  <Form.Control.Feedback type="invalid">
+                    {formik.errors.passwordConfirm}
+                  </Form.Control.Feedback>
                 )}
               </Form.Group>
               <Button className="mt-3" variant="primary" type="submit" disabled={isLoading}>

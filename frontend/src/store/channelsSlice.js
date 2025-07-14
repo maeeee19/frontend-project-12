@@ -12,7 +12,7 @@ export const channelsSlice = createSlice({
     setSelectedChannel: (state, action) => {
       state.selectedChannel = action.payload
     },
-    clearSelectedChannel: (state) => {
+    clearSelectedChannel: state => {
       state.selectedChannel = null
     },
     setChannels: (state, action) => {

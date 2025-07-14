@@ -19,7 +19,7 @@ const LoginPage = () => {
       username: '',
       password: '',
     },
-    onSubmit: async (values) => {
+    onSubmit: async values => {
       try {
         const result = await login(values).unwrap()
         localStorage.setItem('token', result.token)
@@ -50,7 +50,7 @@ const LoginPage = () => {
                   id="username"
                   type="username"
                   placeholder="Ваш ник"
-                  onChange={(e) => formik.setFieldValue('username', e.target.value)}
+                  onChange={e => formik.setFieldValue('username', e.target.value)}
                   value={formik.values.username}
                   isInvalid={isError}
                 />
@@ -66,7 +66,7 @@ const LoginPage = () => {
                   id="password"
                   type="password"
                   placeholder="Пароль"
-                  onChange={(e) => formik.setFieldValue('password', e.target.value)}
+                  onChange={e => formik.setFieldValue('password', e.target.value)}
                   value={formik.values.password}
                   isInvalid={isError}
                 />

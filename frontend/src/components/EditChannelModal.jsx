@@ -18,11 +18,11 @@ const EditChannelModal = ({ show, onHide, channel }) => {
       .required(t('channels.validation.required'))
       .min(3, t('channels.validation.minLength'))
       .max(20, t('channels.validation.maxLength'))
-      .test('unique-name', t('channels.validation.unique'), (value) => {
+      .test('unique-name', t('channels.validation.unique'), value => {
         if (!value || !channels) return true
 
         const normalizedValue = value.trim().toLowerCase()
-        const isDuplicate = channels.some((ch) => ch.id !== currentChannelId && ch.name.toLowerCase() === normalizedValue)
+        const isDuplicate = channels.some(ch => ch.id !== currentChannelId && ch.name.toLowerCase() === normalizedValue)
 
         return !isDuplicate
       }),
@@ -33,7 +33,7 @@ const EditChannelModal = ({ show, onHide, channel }) => {
     },
     validationSchema: createValidationSchema(channels, channel?.id),
     enableReinitialize: true,
-    onSubmit: async (values) => {
+    onSubmit: async values => {
       try {
         const filteredName = filterProfanity(values.name)
         await editChannel({ id: channel.id, name: filteredName }).unwrap()
@@ -60,19 +60,19 @@ const EditChannelModal = ({ show, onHide, channel }) => {
               autoFocus
               type="text"
               placeholder={t('channels.channelNamePlaceholder')}
-              onChange={(e) => formik.setFieldValue('name', e.target.value)}
+              onChange={e => formik.setFieldValue('name', e.target.value)}
               value={formik.values.name}
               isInvalid={formik.touched.name && formik.errors.name}
-              onKeyPress={(e) => {
+              onKeyPress={e => {
                 if (e.key === 'Enter') {
                   formik.handleSubmit()
                 }
               }}
             />
             {formik.touched.name && formik.errors.name && (
-            <Form.Control.Feedback type="invalid">
-              {formik.errors.name}
-            </Form.Control.Feedback>
+              <Form.Control.Feedback type="invalid">
+                {formik.errors.name}
+              </Form.Control.Feedback>
             )}
           </Form.Group>
           <Button

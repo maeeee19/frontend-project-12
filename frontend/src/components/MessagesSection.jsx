@@ -12,7 +12,7 @@ import { filterProfanity, containsProfanity } from '@/utils/profanityFilter'
 const MessagesSection = () => {
   const { t } = useTranslation()
   const selectedChannel = useSelector(selectSelectedChannel)
-  const username = useSelector((state) => state.auth.username)
+  const username = useSelector(state => state.auth.username)
   const [message, setMessage] = useState('')
 
   const {
@@ -42,7 +42,7 @@ const MessagesSection = () => {
     }
   }
 
-  const handleKeyPress = (e) => {
+  const handleKeyPress = e => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault()
       handleSendMessage()
@@ -69,19 +69,19 @@ const MessagesSection = () => {
           </div>
         )}
         {!isLoading && !error && messages.length === 0 && (
-        <div className="text-muted">{t('messages.noMessages')}</div>
+          <div className="text-muted">{t('messages.noMessages')}</div>
         )}
         {
-                    messages.map((message) => (
-                      <div key={message.id} className="d-flex flex-row gap-2 mb-2">
-                        <strong>
-                          {message.username}
-                          :
-                        </strong>
-                        <span>{message.text}</span>
-                      </div>
-                    ))
-                }
+          messages.map(message => (
+            <div key={message.id} className="d-flex flex-row gap-2 mb-2">
+              <strong>
+                {message.username}
+                :
+              </strong>
+              <span>{message.text}</span>
+            </div>
+          ))
+        }
       </div>
       <div className="p-3 d-flex justify-content-between align-items-center gap-2">
         <Form.Control
@@ -89,7 +89,7 @@ const MessagesSection = () => {
           placeholder={t('messages.messagePlaceholder')}
           value={message}
           aria-label="Новое сообщение"
-          onChange={(e) => setMessage(e.target.value)}
+          onChange={e => setMessage(e.target.value)}
           onKeyPress={handleKeyPress}
           disabled={isAddingMessage || !selectedChannel}
         />
