@@ -45,15 +45,15 @@ export const showInfo = (message) => {
   })
 }
 
-export const showChannelCreated = (channelName) => {
+export const showChannelCreated = () => {
   showSuccess(i18next.t('notifications.channelCreated'))
 }
 
-export const showChannelRenamed = (channelName) => {
+export const showChannelRenamed = () => {
   showSuccess(i18next.t('notifications.channelRenamed'))
 }
 
-export const showChannelDeleted = (channelName) => {
+export const showChannelDeleted = () => {
   showSuccess(i18next.t('notifications.channelDeleted'))
 }
 
@@ -61,11 +61,11 @@ export const showNetworkError = () => {
   // showError(i18next.t('notifications.networkError'))
 }
 
-export const showLoadError = (resource) => {
+export const showLoadError = () => {
  // showError(i18next.t('notifications.loadError', { resource }))
 }
 
-export const showSaveError = (resource) => {
+export const showSaveError = () => {
  // showError(i18next.t('notifications.saveError', { resource }))
 }
 
