@@ -1,8 +1,7 @@
 import { io } from 'socket.io-client'
 import { addMessage } from '@/store/messagesSlice'
-import { addChannel, removeChannel, renameChannel } from '@/store/channelsSlice'
-import { showNetworkError } from '@/utils/notifications'
 import { filterProfanity } from '@/utils/profanityFilter'
+import { channelsApi } from '@/store/channelsApi'
 
 let socket = null
 let dispatch = null
@@ -23,26 +22,22 @@ export const initWebSocket = (dispatchInstance) => {
       }
     })
 
-    socket.on('newChannel', (data) => {
+    socket.on('newChannel', () => {
       if (dispatch) {
-        dispatch(addChannel(data))
+        dispatch(channelsApi.util.invalidateTags(['Channel']))
       }
     })
 
-    socket.on('removeChannel', (data) => {
+    socket.on('removeChannel', () => {
       if (dispatch) {
-        dispatch(removeChannel(data.id))
+        dispatch(channelsApi.util.invalidateTags(['Channel']))
       }
     })
 
-    socket.on('renameChannel', (data) => {
+    socket.on('renameChannel', () => {
       if (dispatch) {
-        dispatch(renameChannel(data))
+        dispatch(channelsApi.util.invalidateTags(['Channel']))
       }
-    })
-
-    socket.on('connect_error', () => {
-      showNetworkError()
     })
   }
 

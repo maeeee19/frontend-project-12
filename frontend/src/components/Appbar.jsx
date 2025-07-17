@@ -1,23 +1,14 @@
 import Navbar from 'react-bootstrap/Navbar'
 import Button from 'react-bootstrap/Button'
-import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import { selectAuth } from '@/store/authSlice'
-import { useDispatch } from 'react-redux'
-import { setAuth } from '@/store/authSlice'
+import { useLogout } from '@/hooks/useAuth'
 
 const Appbar = () => {
   const { t } = useTranslation()
-  const navigate = useNavigate()
   const { token, username } = useSelector(selectAuth)
-  const dispatch = useDispatch()
-  const handleLogout = () => {
-    localStorage.removeItem('token')
-    localStorage.removeItem('username')
-    dispatch(setAuth({ username: '', token: '' }))
-    navigate('/login')
-  }
+  const handleLogout = useLogout()
 
   return (
     <Navbar className="bg-gray-100 border-bottom">

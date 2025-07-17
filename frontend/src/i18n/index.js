@@ -15,14 +15,8 @@ i18n
     resources,
     fallbackLng: 'ru',
     debug: false,
-
     interpolation: {
       escapeValue: false,
-    },
-
-    detection: {
-      order: ['localStorage', 'navigator'],
-      caches: ['localStorage'],
     },
   })
 

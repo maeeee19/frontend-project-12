@@ -1,15 +1,16 @@
 import { Modal, Button } from 'react-bootstrap'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import { useDeleteChannelMutation } from '@/store/channelsApi'
 import { removeMessagesByChannel } from '@/store/messagesSlice'
-import { showChannelDeleted, showSaveError } from '@/utils/notifications'
+import { showChannelDeleted } from '@/utils/notifications'
 import { setSelectedChannel } from '@/store/channelsSlice'
+import { useChannels } from '@/hooks/useChannels'
 
 const DeleteChannelModal = ({ show, onHide, channel }) => {
   const { t } = useTranslation()
   const [deleteChannel, { isLoading }] = useDeleteChannelMutation()
-  const channels = useSelector(state => state.channels.channels)
+  const { channels } = useChannels()
   const dispatch = useDispatch()
   const handleDeleteChannel = async () => {
     try {
@@ -20,7 +21,7 @@ const DeleteChannelModal = ({ show, onHide, channel }) => {
       onHide()
     }
     catch {
-      showSaveError(t('channels.title').toLowerCase().slice(0, -1))
+      console.log('error')
     }
   }
 

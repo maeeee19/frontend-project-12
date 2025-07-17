@@ -1,17 +1,16 @@
 import { Modal, Form, Button } from 'react-bootstrap'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
-import { useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
-import { selectChannels } from '@/store/channelsSlice'
 import { useEditChannelMutation } from '@/store/channelsApi'
-import { showChannelRenamed, showSaveError } from '@/utils/notifications'
+import { showChannelRenamed } from '@/utils/notifications'
 import { filterProfanity } from '@/utils/profanityFilter'
+import { useChannels } from '@/hooks/useChannels'
 
 const EditChannelModal = ({ show, onHide, channel }) => {
   const { t } = useTranslation()
   const [editChannel, { isLoading }] = useEditChannelMutation()
-  const channels = useSelector(selectChannels)
+  const { channels } = useChannels()
 
   const createValidationSchema = (channels, currentChannelId) => Yup.object().shape({
     name: Yup.string()
@@ -41,7 +40,6 @@ const EditChannelModal = ({ show, onHide, channel }) => {
         onHide()
       }
       catch {
-        showSaveError(t('channels.title').toLowerCase().slice(0, -1))
         formik.setFieldError('name', t('channels.validation.editError'))
       }
     },

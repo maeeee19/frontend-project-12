@@ -1,5 +1,54 @@
 # React + Vite
 
+Этот проект — фронтенд-приложение на React с использованием Vite.
+
+## Как запустить проект (разработка)
+
+1. Установите зависимости:
+   ```bash
+   npm ci
+   ```
+2. Запустите проект в режиме разработки:
+   ```bash
+   npm run dev
+   ```
+   Приложение будет доступно по адресу: http://localhost:5002
+
+## Как собрать проект (production)
+
+1. Соберите проект:
+   ```bash
+   npm run build
+   ```
+   После сборки папка `dist` будет содержать готовые файлы.
+
+2. Для локального просмотра production-сборки используйте:
+   ```bash
+   npm run serve
+   ```
+   По умолчанию приложение будет доступно по адресу: http://localhost:4173
+
+## Как запустить production-сборку на сервере
+
+1. Скопируйте содержимое папки `dist` на сервер.
+2. Используйте любой статический сервер, например [serve](https://www.npmjs.com/package/serve):
+   ```bash
+   npx serve -s dist
+   ```
+
+## Проверка кода
+
+- Запуск линтера:
+  ```bash
+  npm run lint
+  ```
+- Автоматическое исправление ошибок:
+  ```bash
+  npm run lint:fix
+  ```
+
+---
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:

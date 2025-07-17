@@ -1,13 +1,14 @@
 import { Modal, Form, Button } from 'react-bootstrap'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 
 import { useTranslation } from 'react-i18next'
-import { setSelectedChannel, selectChannels } from '@/store/channelsSlice'
+import { setSelectedChannel } from '@/store/channelsSlice'
 import { useAddChannelMutation } from '@/store/channelsApi'
-import { showChannelCreated, showSaveError } from '@/utils/notifications'
+import { showChannelCreated } from '@/utils/notifications'
 import { filterProfanity } from '@/utils/profanityFilter'
+import { useChannels } from '@/hooks/useChannels'
 
 const createValidationSchema = (channels, t) => Yup.object().shape({
   name: Yup.string()
@@ -28,7 +29,7 @@ const NewChannelModal = ({ show, onHide }) => {
   const { t } = useTranslation()
   const [addChannel, { isLoading }] = useAddChannelMutation()
   const dispatch = useDispatch()
-  const channels = useSelector(selectChannels)
+  const { channels } = useChannels()
   const formik = useFormik({
     initialValues: {
       name: '',
@@ -45,7 +46,6 @@ const NewChannelModal = ({ show, onHide }) => {
         onHide()
       }
       catch {
-        showSaveError(t('channels.title').toLowerCase().slice(0, -1))
         formik.setFieldError('name', 'Ошибка создания канала')
       }
     },

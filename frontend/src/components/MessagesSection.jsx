@@ -1,29 +1,21 @@
 import { Container, Form, Button } from 'react-bootstrap'
 import { useSelector } from 'react-redux'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useMessages } from '@/hooks/useMessages'
 import { selectSelectedChannel } from '@/store/channelsSlice'
-import {
-  showMessageSent, showMessageError, showLoadError, showWarning,
-} from '@/utils/notifications'
+import { showWarning } from '@/utils/notifications'
 import { filterProfanity, containsProfanity } from '@/utils/profanityFilter'
 
 const MessagesSection = () => {
   const { t } = useTranslation()
-  const selectedChannel = useSelector(selectSelectedChannel)
+  const selectedChannel = useSelector(selectSelectedChannel)  
   const username = useSelector(state => state.auth.username)
   const [message, setMessage] = useState('')
 
   const {
     messages, isLoading, error, sendMessage, isAddingMessage,
   } = useMessages(selectedChannel?.id)
-
-  useEffect(() => {
-    if (error) {
-      showLoadError(t('messages.title').toLowerCase())
-    }
-  }, [error, t])
 
   const handleSendMessage = async () => {
     if (message.trim() && selectedChannel) {
@@ -34,11 +26,10 @@ const MessagesSection = () => {
       try {
         const filteredMessage = filterProfanity(message)
         await sendMessage(filteredMessage, username)
-        showMessageSent()
         setMessage('')
       }
       catch {
-        showMessageError()
+        console.log('error')
       }
     }
   }

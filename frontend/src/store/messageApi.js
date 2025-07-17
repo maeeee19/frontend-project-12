@@ -1,80 +1,36 @@
 import { createApi } from '@reduxjs/toolkit/query/react'
-import axios from 'axios'
+import { baseQuery } from './baseQuery'
 
 export const messageApi = createApi({
   reducerPath: 'messagesApi',
   tagTypes: ['Message'],
+  baseQuery: baseQuery,
   endpoints: builder => ({
     getMessages: builder.query({
-      queryFn: async () => {
-        try {
-          const token = localStorage.getItem('token')
-          const response = await axios.get('/api/v1/messages', { headers: { Authorization: `Bearer ${token}` } })
-          return { data: response.data }
-        }
-        catch (error) {
-          return {
-            error: {
-              status: error.response?.status || 'FETCH_ERROR',
-              data: error.response?.data || error.message,
-            },
-          }
-        }
-      },
+      query: () => '/messages',
       providesTags: ['Message'],
     }),
     addMessage: builder.mutation({
-      queryFn: async (newMessage) => {
-        try {
-          const token = localStorage.getItem('token')
-          const response = await axios.post('/api/v1/messages', newMessage, { headers: { Authorization: `Bearer ${token}` } })
-          return { data: response.data }
-        }
-        catch (error) {
-          return {
-            error: {
-              status: error.response?.status || 'FETCH_ERROR',
-              data: error.response?.data || error.message,
-            },
-          }
-        }
-      },
+      query: (newMessage) => ({
+        url: '/messages',
+        method: 'POST',
+        body: newMessage,
+      }),
       invalidatesTags: ['Message'],
     }),
     editMessage: builder.mutation({
-      queryFn: async (editedMessage) => {
-        try {
-          const token = localStorage.getItem('token')
-          const response = await axios.put(`/api/v1/messages/${editedMessage.id}`, editedMessage, { headers: { Authorization: `Bearer ${token}` } })
-          return { data: response.data }
-        }
-        catch (error) {
-          return {
-            error: {
-              status: error.response?.status || 'FETCH_ERROR',
-              data: error.response?.data || error.message,
-            },
-          }
-        }
-      },
+      query: (editedMessage) => ({
+        url: `/messages/${editedMessage.id}`,
+        method: 'PUT',
+        body: editedMessage,
+      }),
       invalidatesTags: ['Message'],
     }),
     deleteMessage: builder.mutation({
-      queryFn: async (messageId) => {
-        try {
-          const token = localStorage.getItem('token')
-          const response = await axios.delete(`/api/v1/messages/${messageId}`, { headers: { Authorization: `Bearer ${token}` } })
-          return { data: response.data }
-        }
-        catch (error) {
-          return {
-            error: {
-              status: error.response?.status || 'FETCH_ERROR',
-              data: error.response?.data || error.message,
-            },
-          }
-        }
-      },
+      query: (messageId) => ({
+        url: `/messages/${messageId}`,
+        method: 'DELETE',
+      }),
       invalidatesTags: ['Message'],
     }),
   }),
