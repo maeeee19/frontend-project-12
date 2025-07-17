@@ -51,7 +51,7 @@ const MessagesSection = () => {
   }
 
   return (
-    <Container className="border rounded d-flex flex-column" style={{ maxHeight: "calc(100vh - 100px)" }}>
+    <Container className="border rounded d-flex flex-column" style={{ maxHeight: 'calc(100vh - 100px)' }}>
       <div className="p-3 d-flex flex-column justify-content-between align-items-left border-bottom">
         <strong>
           #
