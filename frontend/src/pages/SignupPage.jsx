@@ -56,6 +56,7 @@ const SignupPage = () => {
               <Form.Control
                 id="username"
                 type="username"
+                autoComplete="off"
                 placeholder="Имя пользователя"
                 onChange={e => formik.setFieldValue('username', e.target.value)}
                 value={formik.values.username}
@@ -72,6 +73,7 @@ const SignupPage = () => {
               <Form.Control
                 id="password"
                 type="password"
+                autoComplete="off"
                 placeholder="Пароль"
                 onChange={e => formik.setFieldValue('password', e.target.value)}
                 value={formik.values.password}
@@ -88,6 +90,7 @@ const SignupPage = () => {
               <Form.Control
                 id="passwordConfirm"
                 type="password"
+                autoComplete="off"
                 placeholder="Подтвердите пароль"
                 onChange={e => formik.setFieldValue('passwordConfirm', e.target.value)}
                 value={formik.values.passwordConfirm}

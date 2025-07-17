@@ -38,6 +38,7 @@ const LoginPage = () => {
               <Form.Control
                 id="username"
                 type="username"
+                autoComplete="off"
                 placeholder="Ваш ник"
                 onChange={e => formik.setFieldValue('username', e.target.value)}
                 value={formik.values.username}
@@ -54,6 +55,7 @@ const LoginPage = () => {
               <Form.Control
                 id="password"
                 type="password"
+                autoComplete="off"
                 placeholder="Пароль"
                 onChange={e => formik.setFieldValue('password', e.target.value)}
                 value={formik.values.password}

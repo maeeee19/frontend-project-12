@@ -64,6 +64,7 @@ const NewChannelModal = ({ show, onHide }) => {
               id="name"
               autoFocus
               type="text"
+              autoComplete="off"
               placeholder={t('channels.channelNamePlaceholder')}
               onChange={e => formik.setFieldValue('name', e.target.value)}
               value={formik.values.name}
