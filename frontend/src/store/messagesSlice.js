@@ -17,7 +17,11 @@ const messagesSlice = createSlice({
       state.error = null
     },
     addMessage: (state, action) => {
-      state.messages.push(action.payload)
+      const foundMessage = state.messages.find(message => message.id === action.payload.id)
+      
+      if (!foundMessage) {
+        state.messages.push(action.payload)
+      }
     },
     setCurrentChannel: (state, action) => {
       state.currentChannelId = action.payload
