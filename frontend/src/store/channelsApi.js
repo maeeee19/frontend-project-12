@@ -11,15 +11,15 @@ export const channelsApi = createApi({
       providesTags: ['Channel'],
     }),
     addChannel: builder.mutation({
-      query: (newChannel) => ({
+      query: newChannel => ({
         url: '/channels',
         method: 'POST',
         body: { name: newChannel },
       }),
       invalidatesTags: ['Channel'],
-    }), 
+    }),
     editChannel: builder.mutation({
-      query: (editedChannel) => ({
+      query: editedChannel => ({
         url: `/channels/${editedChannel.id}`,
         method: 'PATCH',
         body: { name: editedChannel.name },
@@ -27,7 +27,7 @@ export const channelsApi = createApi({
       invalidatesTags: ['Channel'],
     }),
     deleteChannel: builder.mutation({
-      query: (channelId) => ({
+      query: channelId => ({
         url: `/channels/${channelId}`,
         method: 'DELETE',
       }),

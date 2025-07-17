@@ -11,7 +11,7 @@ export const messageApi = createApi({
       providesTags: ['Message'],
     }),
     addMessage: builder.mutation({
-      query: (newMessage) => ({
+      query: newMessage => ({
         url: '/messages',
         method: 'POST',
         body: newMessage,
@@ -19,7 +19,7 @@ export const messageApi = createApi({
       invalidatesTags: ['Message'],
     }),
     editMessage: builder.mutation({
-      query: (editedMessage) => ({
+      query: editedMessage => ({
         url: `/messages/${editedMessage.id}`,
         method: 'PUT',
         body: editedMessage,
@@ -27,7 +27,7 @@ export const messageApi = createApi({
       invalidatesTags: ['Message'],
     }),
     deleteMessage: builder.mutation({
-      query: (messageId) => ({
+      query: messageId => ({
         url: `/messages/${messageId}`,
         method: 'DELETE',
       }),

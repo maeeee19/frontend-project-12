@@ -16,7 +16,7 @@ export const useInitAuth = () => {
   }, [username, token])
 
   return { username, token }
-}   
+}
 
 export const useLogout = () => {
   const dispatch = useDispatch()

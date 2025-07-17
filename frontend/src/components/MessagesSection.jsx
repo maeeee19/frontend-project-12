@@ -9,7 +9,7 @@ import { filterProfanity, containsProfanity } from '@/utils/profanityFilter'
 
 const MessagesSection = () => {
   const { t } = useTranslation()
-  const selectedChannel = useSelector(selectSelectedChannel)  
+  const selectedChannel = useSelector(selectSelectedChannel)
   const username = useSelector(state => state.auth.username)
   const [message, setMessage] = useState('')
 
