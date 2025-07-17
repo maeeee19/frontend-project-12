@@ -4,3 +4,7 @@
 # Чат (Slack)
 
 ## Установка
+
+
+## Ссылка на Render
+https://frontend-project-12-3adz.onrender.com/
